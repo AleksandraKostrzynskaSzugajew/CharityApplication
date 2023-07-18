@@ -1,0 +1,24 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:mysql://localhost:3306/charity_donation?serverTimezone=UTC
+    username: root
+    password: coderslab
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  web:
+    locale: pl_PL
+    locale-resolver: fixed
+  sql:
+    init:
+      mode: always
+
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.hibernate: ERROR
