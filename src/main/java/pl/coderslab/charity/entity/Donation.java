@@ -36,4 +36,6 @@ public class Donation {
 
     private String pickUpComment;
 
+    private String phone;
+
 }

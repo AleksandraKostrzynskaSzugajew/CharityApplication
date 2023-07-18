@@ -2,6 +2,7 @@ package pl.coderslab.charity.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.repository.DonationRepository;
 import pl.coderslab.charity.repository.InstitutionRepository;
@@ -22,7 +23,11 @@ public class DonationService {
         return donationRepository.sumQuantity();
     }
 
-    public Long countDonations(){
+    public Long countDonations() {
         return donationRepository.countDonations();
+    }
+
+    public void save(Donation donation) {
+        donationRepository.save(donation);
     }
 }
