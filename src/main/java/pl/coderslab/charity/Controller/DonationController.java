@@ -69,7 +69,8 @@ public class DonationController {
     @PostMapping("/donated")
     public String processDonationForm(@ModelAttribute("donation") Donation donation) {
         // Przetwarzanie obiektu Donation
-
+        System.out.println("========================================");
+        System.out.println("city = " +donation.getCity());
         return "form-confirmation";
     }
 }

@@ -212,7 +212,7 @@
 
             <div class="form-group form-group--buttons">
                 <button type="button" class="btn prev-step">Wstecz</button>
-                <button type="submit" class="btn" id="summary-confirm-btn">Potwierdzam</button>
+                <button type="submit" class="btn" id="summary-confirm-button">Potwierdzam</button>
             </div>
         </div>
 
@@ -293,6 +293,38 @@
             li.textContent = institutionName;
             summaryInstitutions.appendChild(li);
         });
+
+        const summaryConfirmBtn = document.getElementById('summary-confirm-button');
+        summaryConfirmBtn.addEventListener('click', () => {
+            // Wywołanie metody POST
+            submitForm();
+        });
+
+        function submitForm() {
+            // Pobieranie danych z formularza
+            const form = document.querySelector('form');
+            const formData = new FormData(form);
+
+            // Tworzenie żądania POST
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/donated', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            // Obsługa zdarzenia po wysłaniu żądania
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    // Przekierowanie na stronę potwierdzenia
+                    window.location.href = '/form-confirmation';
+                } else {
+                    // Obsługa błędu
+                    console.error('Wystąpił błąd podczas wysyłania formularza.');
+                }
+            };
+
+            // Wysłanie żądania POST
+            xhr.send(new URLSearchParams(formData));
+        }
+
     });
 </script>
 
