@@ -8,3 +8,7 @@ insert into institution (name, description) values ("Fundacja IRASIAD - ZAGUBION
 
 insert into donation (city, pick_up_comment, pick_up_date, pick_up_time, quantity, street, zip_code) VALUEs ("Warszawa" , "ostroznie szklo", "2023-11-16", "17:00", 3, "Warszawska", "08-263") ;
 
+insert into category (name) value ("Zabawki");
+insert into category (name) value ("Ubrania");
+insert into category (name) value ("Buty");
+insert into category (name) value ("Inne");
