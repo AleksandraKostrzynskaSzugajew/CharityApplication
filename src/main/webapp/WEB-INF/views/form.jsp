@@ -212,15 +212,12 @@
 
             <div class="form-group form-group--buttons">
                 <button type="button" class="btn prev-step">Wstecz</button>
-                <button type="button" class="btn" id="summary-confirm-btn">Potwierdzam</button>
+                <button type="submit" class="btn" id="summary-confirm-btn">Potwierdzam</button>
             </div>
         </div>
 
 
-<%--        <div class="form-group form-group--buttons">--%>
-<%--            <button type="button" class="btn prev-step">Wstecz</button>--%>
-<%--            <button type="submit" class="btn">Potwierdzam</button>--%>
-<%--        </div>--%>
+
     </div>
 
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

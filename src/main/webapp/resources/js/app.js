@@ -150,6 +150,63 @@ document.addEventListener("DOMContentLoaded", function() {
     updateForm() {
       this.$step.innerText = this.currentStep;
 
+      // Get input values
+      const quantityInput = document.getElementById('quantity');
+      const selectedCategories = document.querySelectorAll('input[name="categories"]:checked');
+      const selectedInstitutions = document.querySelectorAll('input[name="institutions"]:checked');
+      const streetInput = document.getElementById('street');
+      const cityInput = document.getElementById('city');
+      const zipCodeInput = document.getElementById('zipCode');
+      const phoneInput = document.getElementById('phone');
+      const pickUpDateInput = document.getElementById('pickUpDate');
+      const pickUpTimeInput = document.getElementById('pickUpTime');
+      const pickUpCommentInput = document.getElementById('pickUpComment');
+
+// Update summary values
+      const summaryQuantity = document.getElementById('summary-quantity');
+      summaryQuantity.value = quantityInput.value;
+
+      const summaryCategories = document.getElementById('summary-categories');
+      summaryCategories.innerHTML = '';
+      selectedCategories.forEach(category => {
+        const categoryName = category.nextElementSibling.nextElementSibling.textContent;
+        const li = document.createElement('li');
+        li.textContent = categoryName;
+        summaryCategories.appendChild(li);
+      });
+
+      const summaryInstitutions = document.getElementById('summary-institutions');
+      summaryInstitutions.innerHTML = '';
+      selectedInstitutions.forEach(institution => {
+        const institutionName = institution.nextElementSibling.nextElementSibling.textContent;
+        const li = document.createElement('li');
+        li.textContent = institutionName;
+        summaryInstitutions.appendChild(li);
+      });
+
+      const summaryStreet = document.getElementById('summary-street');
+      summaryStreet.textContent = streetInput.value;
+
+      const summaryCity = document.getElementById('summary-city');
+      summaryCity.textContent = cityInput.value;
+
+      const summaryZipCode = document.getElementById('summary-zipCode');
+      summaryZipCode.textContent = zipCodeInput.value;
+
+      const summaryPhone = document.getElementById('summary-phone');
+      summaryPhone.textContent = phoneInput.value;
+
+      const summaryPickUpDate = document.getElementById('summary-pickUpDate');
+      summaryPickUpDate.textContent = pickUpDateInput.value;
+
+      const summaryPickUpTime = document.getElementById('summary-pickUpTime');
+      summaryPickUpTime.textContent = pickUpTimeInput.value;
+
+      const summaryPickUpComment = document.getElementById('summary-pickUpComment');
+      summaryPickUpComment.textContent = pickUpCommentInput.value;
+
+
+
       // TODO: Validation
 
       this.slides.forEach(slide => {
