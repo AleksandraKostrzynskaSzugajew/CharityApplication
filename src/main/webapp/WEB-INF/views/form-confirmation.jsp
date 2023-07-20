@@ -17,8 +17,17 @@
 
 <div class="slogan container container--90">
     <h2>
-        Dziękujemy za przesłanie formularza Na maila prześlemy wszelkie
+        <br>
+        <br>
+        <br>
+        <br>
+        Dziękujemy za przesłanie formularza. Na maila prześlemy wszelkie
         informacje o odbiorze.
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
     </h2>
 </div>
 

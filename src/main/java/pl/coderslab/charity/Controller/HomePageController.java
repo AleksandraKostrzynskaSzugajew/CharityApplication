@@ -10,6 +10,7 @@ import pl.coderslab.charity.service.InstitutionService;
 import java.util.List;
 
 @Controller
+//@RequestMapping("/home")
 public class HomePageController {
 
     private final InstitutionService institutionService;
@@ -21,7 +22,7 @@ public class HomePageController {
     }
 
 
-    @GetMapping("/home")
+    @GetMapping
     public String allInstitutions(Model model) {
         List<Institution> institutions = institutionService.findAll();
         model.addAttribute("institutions", institutions);
@@ -32,6 +33,21 @@ public class HomePageController {
         Long numberOfDonations = donationService.countDonations();
         model.addAttribute("numberOfDonations", numberOfDonations);
 
-        return "index";
+        return "home";
+    }
+
+    @GetMapping("/home/about")
+    public String aboutUs() {
+        return "aboutUs";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @GetMapping("/register")
+    public String register() {
+        return "register";
     }
 }

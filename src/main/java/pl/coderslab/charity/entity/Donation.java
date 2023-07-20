@@ -1,11 +1,12 @@
 package pl.coderslab.charity.entity;
 
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;

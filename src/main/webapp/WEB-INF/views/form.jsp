@@ -140,7 +140,7 @@
 
             <div class="form-group form-group--buttons">
                 <button type="button" class="btn prev-step">Wstecz</button>
-                <button type="button" class="btn next-step">Dalej</button>
+                <button type="button" class="btn next-step" id="summary-button">Dalej</button>
             </div>
         </div>
 
@@ -232,7 +232,7 @@
 
 <script>
     // Aktualizacja wartości w podsumowaniu
-    const summaryConfirmBtn = document.getElementById('summary-confirm-btn');
+    const summaryConfirmBtn = document.getElementById('summary-btn');
 
     summaryConfirmBtn.addEventListener('click', () => {
         const quantityInput = document.getElementById('quantity');
