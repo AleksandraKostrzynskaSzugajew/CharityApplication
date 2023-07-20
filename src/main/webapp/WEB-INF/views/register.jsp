@@ -25,9 +25,9 @@
         <div class="form-group">
           <input type="password" name="password" placeholder="Hasło" />
         </div>
-        <div class="form-group">
-          <input type="password" name="password2" placeholder="Powtórz hasło" />
-        </div>
+<%--        <div class="form-group">--%>
+<%--          <input type="password" name="password2" placeholder="Powtórz hasło" />--%>
+<%--        </div>--%>
 
         <div class="form-group form-group--buttons">
           <a href="login.jsp" class="btn btn--without-border">Zaloguj się</a>
@@ -39,6 +39,6 @@
       </form:form>
     </section>
 
-  <%@ include file="header.jsp" %>
+  <%@ include file="footer.jsp" %>
   </body>
 </html>

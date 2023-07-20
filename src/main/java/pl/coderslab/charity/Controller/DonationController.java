@@ -37,42 +37,11 @@ public class DonationController {
         return "form";
     }
 
-//    @PostMapping("/donated")
-//    public String saveDonation(@RequestParam int quantity,
-//                               @RequestParam List<Category> categories,
-//                               @RequestParam List<Institution> institutions,
-//                               @RequestParam String street,
-//                               @RequestParam String city,
-//                               @RequestParam String zipCode,
-//                               @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate pickUpDate,
-//                               @RequestParam LocalTime pickUpTime,
-//                               @RequestParam String pickUpComment,
-//                               @RequestParam String phone) {
-//
-//        Donation donation = new Donation();
-//        donation.setQuantity(quantity);
-//        donation.setCategories(categories);
-//        donation.setInstitutions(institutions);
-//        donation.setStreet(street);
-//        donation.setCity(city);
-//        donation.setZipCode(zipCode);
-//        donation.setPickUpDate(pickUpDate);
-//        donation.setPickUpTime(pickUpTime);
-//        donation.setPickUpComment(pickUpComment);
-//        donation.setPhone(phone);
-//        donationService.save(donation);
-//
-//        return "form-confirmation";
-//    }
-
 
     @PostMapping("/donated")
     public String processDonationForm(@ModelAttribute("donation") Donation donation) {
-        // Przetwarzanie obiektu Donation
-
         donationService.save(donation);
-        System.out.println("========================================");
-        System.out.println("city = " +donation.getCity());
+
         return "form-confirmation";
     }
 }

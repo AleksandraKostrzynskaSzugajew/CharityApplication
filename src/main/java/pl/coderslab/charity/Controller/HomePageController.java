@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.service.DonationService;
@@ -14,7 +15,7 @@ import pl.coderslab.charity.service.UserService;
 import java.util.List;
 
 @Controller
-//@RequestMapping("/home")
+@RequestMapping("/home")
 public class HomePageController {
 
     private final InstitutionService institutionService;
@@ -28,8 +29,8 @@ public class HomePageController {
         this.userService = userService;
     }
 
-    @GetMapping("/home")
-    public String allInstitutions(Model model) {
+    @GetMapping
+    public String homePage(Model model) {
         List<Institution> institutions = institutionService.findAll();
         model.addAttribute("institutions", institutions);
 
@@ -42,7 +43,7 @@ public class HomePageController {
         return "home";
     }
 
-    @GetMapping("/home/about")
+    @GetMapping("/about")
     public String aboutUs() {
         return "aboutUs";
     }
@@ -55,13 +56,16 @@ public class HomePageController {
     @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("user", new User());
+
         return "register";
     }
 
     @PostMapping("/registered")
     public String registered(@ModelAttribute User user) {
+        System.out.println("================================================================================");
+        System.out.println(user.getEmail());
         userService.save(user);
-        return "login";
+        return "home";
     }
 
 }

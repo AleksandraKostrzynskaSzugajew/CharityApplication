@@ -2,15 +2,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html lang="pl">
+<%--<!DOCTYPE html> lang="pl"--%>
+<html>
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
 
-    <link rel="stylesheet" href="<c:url value="static/css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/static/css/style.css"/>"/>
+
+<%--    probowane tez /home/alekosszu/Downloads/portfolioLabCharity/src/main/resources/static/css/style.css--%>
+<%--    resources/static/css/style.css--%>
+<%--    /static/css/style.css--%>
+<%--    static/css/style.css--%>
+
 </head>
 <body>
 
@@ -70,9 +76,9 @@
         <h2>O nas</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptas vitae animi rem pariatur incidunt libero
             optio esse quisquam illo omnis.</p>
-        <img src="<c:url value="resources/images/signature.svg"/>" class="about-us--text-signature" alt="Signature"/>
+        <img src="<c:url value="resources/static/images/signature.svg"/>" class="about-us--text-signature" alt="Signature"/>
     </div>
-    <div class="about-us--image"><img src="<c:url value="resources/images/about-us.jpg"/>" alt="People in circle"/>
+    <div class="about-us--image"><img src="<c:url value="resources/static/images/about-us.jpg"/>" alt="People in circle"/>
     </div>
 </section>
 
@@ -105,6 +111,6 @@
 
 <%@ include file="footer.jsp" %>
 
-<script src="<c:url value="resources/js/app.js"/>"></script>
+<script src="<c:url value="resources/static/js/app.js"/>"></script>
 </body>
 </html>

@@ -29,14 +29,14 @@ public class SesSecurityConfig {
         );
         http
                 .authorizeHttpRequests((requests) -> requests
-                                .requestMatchers("/", "/home", "/register", "/logout", "/login").permitAll()
+                                .requestMatchers("/", "/home", "/home/register", "/home/logout", "/home/login").permitAll()
 //                        .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
 //                        .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
-                        .loginPage("/login")
-                        .loginProcessingUrl("/login")
+                        .loginPage("/home/login")
+                        .loginProcessingUrl("/home/login")
                         .permitAll()
                         .defaultSuccessUrl("/user/loggedin") // Domyślna strona dla użytkownika
 
