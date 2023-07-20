@@ -3,9 +3,13 @@ package pl.coderslab.charity.Controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.charity.entity.Institution;
+import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.service.InstitutionService;
+import pl.coderslab.charity.service.UserService;
 
 import java.util.List;
 
@@ -16,13 +20,15 @@ public class HomePageController {
     private final InstitutionService institutionService;
     private final DonationService donationService;
 
-    public HomePageController(InstitutionService institutionService, DonationService donationService) {
+    private final UserService userService;
+
+    public HomePageController(InstitutionService institutionService, DonationService donationService, UserService userService) {
         this.institutionService = institutionService;
         this.donationService = donationService;
+        this.userService = userService;
     }
 
-
-    @GetMapping
+    @GetMapping("/home")
     public String allInstitutions(Model model) {
         List<Institution> institutions = institutionService.findAll();
         model.addAttribute("institutions", institutions);
@@ -47,7 +53,15 @@ public class HomePageController {
     }
 
     @GetMapping("/register")
-    public String register() {
+    public String register(Model model) {
+        model.addAttribute("user", new User());
         return "register";
     }
+
+    @PostMapping("/registered")
+    public String registered(@ModelAttribute User user) {
+        userService.save(user);
+        return "login";
+    }
+
 }
