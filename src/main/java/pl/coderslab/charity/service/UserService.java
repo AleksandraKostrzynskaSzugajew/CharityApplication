@@ -55,4 +55,9 @@ public class UserService {
     public void deleteById(Long id) {
         userRepository.deleteById(id);
     }
+
+    public void blockUser(Long id) {
+        User user = findById(id);
+        user.setBlocked(true);
+    }
 }

@@ -23,4 +23,6 @@ public class User {
 
     @ManyToOne
     private Role role;
+
+    private boolean isBlocked;
 }

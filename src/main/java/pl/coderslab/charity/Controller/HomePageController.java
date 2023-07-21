@@ -66,6 +66,7 @@ public class HomePageController {
     @PostMapping("/register")
     public String registered(@ModelAttribute User user) {
         user.setRole(roleService.findByName("ROLE_USER"));
+        user.setBlocked(false);
         userService.save(user);
         return "home";
     }
