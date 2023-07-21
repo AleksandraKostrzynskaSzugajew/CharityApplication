@@ -18,7 +18,7 @@
 
     <section class="login-page">
       <h2>Załóż konto</h2>
-      <form:form action="/registered" method="post">
+      <form:form action="/home/register" method="post">
         <div class="form-group">
           <input type="email" name="email" placeholder="Email" />
         </div>

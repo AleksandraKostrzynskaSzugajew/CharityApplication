@@ -60,7 +60,7 @@ public class HomePageController {
         return "register";
     }
 
-    @PostMapping("/registered")
+    @PostMapping("/register")
     public String registered(@ModelAttribute User user) {
         System.out.println("================================================================================");
         System.out.println(user.getEmail());

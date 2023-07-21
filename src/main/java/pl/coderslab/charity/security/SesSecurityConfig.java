@@ -28,8 +28,13 @@ public class SesSecurityConfig {
 
         );
         http
+
+                // jak dwie gwiazdki to przepuszcza tez podkatalog
+                // * pojedyncze zaglebienie
+                //** zaglebien dowolna ilosc
+
                 .authorizeHttpRequests((requests) -> requests
-                                .requestMatchers("/", "/home", "/home/register", "/home/logout", "/home/login").permitAll()
+                                .requestMatchers("/", "/home", "/home/register", "/home/logout", "/home/login", "/css/**", "/js/**", "/images/**").permitAll()
 //                        .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
 //                        .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .anyRequest().authenticated()
