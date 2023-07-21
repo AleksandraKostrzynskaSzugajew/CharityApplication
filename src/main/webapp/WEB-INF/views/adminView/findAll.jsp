@@ -19,28 +19,28 @@
   <table>
     <tr>
       <th>Id</th>
-      <th>Name</th>
-      <th>Description</th>
+      <th>Email</th>
+      <th>Rola</th>
     </tr>
-    <c:forEach items="${institutions}" var="institution">
+    <c:forEach items="${admins}" var="admin">
       <tr>
-        <td>${institution.id}</td>
-        <td>${institution.name}</td>
-        <td>${institution.description}</td>
+        <td>${admin.id}</td>
+        <td>${admin.name}</td>
+        <td>${admin.role}</td>
 
-        <td><a href="<c:url value='/admin/inst/edit?id=${institution.id}'/>">Edit</a></td>
-        <td><a href="<c:url value='/admin/inst/delete?id=${institution.id}'/>" onclick="return confirm('Are you sure?')">Remove</a></td>
+        <td><a href="<c:url value='/admin/admin/edit?id=${admin.id}'/>">Edytuj</a></td>
+        <td><a href="<c:url value='/admin/admin/delete?id=${admin.id}'/>" onclick="return confirm('Czy jestes pewien?')">Usun</a></td>
       </tr>
     </c:forEach>
   </table>
   <br>
   <br>
   <br>
-  <td><a href="<c:url value='/admin/inst/save' />">Add new category</a></td>
+  <td><a href="<c:url value='/admin/admin/save' />">Dodaj noewgo administratora</a></td>
 
   <br>
   <br>
-  <td><a href="<c:url value='/admin/home' />">Go back home</a></td>
+  <td><a href="<c:url value='/admin/home' />">Powrot na strone glowna</a></td>
 
   <%@ include file="institution/footer.jsp" %>
   </body>

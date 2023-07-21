@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.service.InstitutionService;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/admin/inst")
 public class InstitutionsController {
@@ -14,6 +16,12 @@ public class InstitutionsController {
 
     public InstitutionsController(InstitutionService institutionService) {
         this.institutionService = institutionService;
+    }
+
+
+    @ModelAttribute("institutions")
+    public List<Institution> institutions() {
+        return institutionService.findAll();
     }
 
     @GetMapping("/save")

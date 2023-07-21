@@ -10,6 +10,7 @@ import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.service.InstitutionService;
+import pl.coderslab.charity.service.RoleService;
 import pl.coderslab.charity.service.UserService;
 
 import java.util.List;
@@ -22,11 +23,13 @@ public class HomePageController {
     private final DonationService donationService;
 
     private final UserService userService;
+    private final RoleService roleService;
 
-    public HomePageController(InstitutionService institutionService, DonationService donationService, UserService userService) {
+    public HomePageController(InstitutionService institutionService, DonationService donationService, UserService userService, RoleService roleService) {
         this.institutionService = institutionService;
         this.donationService = donationService;
         this.userService = userService;
+        this.roleService = roleService;
     }
 
     @GetMapping
@@ -62,8 +65,7 @@ public class HomePageController {
 
     @PostMapping("/register")
     public String registered(@ModelAttribute User user) {
-        System.out.println("================================================================================");
-        System.out.println(user.getEmail());
+        user.setRole(roleService.findByName("ROLE_USER"));
         userService.save(user);
         return "home";
     }

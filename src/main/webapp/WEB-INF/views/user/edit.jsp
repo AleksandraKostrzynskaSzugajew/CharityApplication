@@ -16,7 +16,7 @@
 <body>
 <%@ include file="../header.jsp" %>
 
-<form:form method="post" action="admin/admin/edited" modelAttribute="admin">
+<form:form method="post" action="user/edited" modelAttribute="user">
 
     <div>Email  : <form:input path="email"/></div>
     <div>Rola : <form:input path="role"/></div>

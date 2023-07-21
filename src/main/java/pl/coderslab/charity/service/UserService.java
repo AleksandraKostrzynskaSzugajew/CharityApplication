@@ -42,4 +42,17 @@ public class UserService {
         Long userId = findByEmail(email);
         return userId;
     }
+
+    public User findById(Long id) {
+        return userRepository.findById(id).get();
+    }
+
+
+    public void edit(User user) {
+        userRepository.save(user);
+    }
+
+    public void deleteById(Long id) {
+        userRepository.deleteById(id);
+    }
 }

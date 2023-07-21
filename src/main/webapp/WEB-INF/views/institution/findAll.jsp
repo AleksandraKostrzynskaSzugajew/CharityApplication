@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="<c:url value="/css/style.css"/>"/>
   </head>
   <body>
-  <%@ include file="institution/header.jsp" %>
+  <%@ include file="../header.jsp" %>
 
 
   <table>
@@ -42,6 +42,6 @@
   <br>
   <td><a href="<c:url value='/admin/home' />">Go back home</a></td>
 
-  <%@ include file="institution/footer.jsp" %>
+  <%@ include file="../footer.jsp" %>
   </body>
 </html>

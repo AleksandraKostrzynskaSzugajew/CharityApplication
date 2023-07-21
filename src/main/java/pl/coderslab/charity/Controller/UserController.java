@@ -3,7 +3,6 @@ package pl.coderslab.charity.Controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.service.AdminService;
 import pl.coderslab.charity.service.RoleService;
@@ -12,59 +11,41 @@ import pl.coderslab.charity.service.UserService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/admin/admin")
-public class AdminController {
+@RequestMapping("/user")
+public class UserController {
+
 
     private final UserService userService;
     private final AdminService adminService;
-
     private final RoleService roleService;
 
-    public AdminController(UserService userService, AdminService adminService, RoleService roleService) {
+    public UserController(UserService userService, AdminService adminService, RoleService roleService) {
         this.userService = userService;
         this.adminService = adminService;
         this.roleService = roleService;
     }
 
-
-    @ModelAttribute("admins")
+    @ModelAttribute("users")
     public List<User> admins() {
-        return adminService.findAllAdmins(1L);
+        return adminService.findAllAdmins(2L);
     }
 
     @GetMapping("/findall")
-    public List<User> findAllAdmins() {
-        return adminService.findAllAdmins(1L);
+    public List<User> findAllUsers() {
+        return adminService.findAllByRoleId(1L);
     }
 
-    @GetMapping("/save")
-    public String save(Model model) {
-        model.addAttribute("admin", new User());
-        return "adminView/save";
-    }
-
-    @PostMapping("/save")
-    public String saved(@ModelAttribute User user) {
-        user.setRole(roleService.findByName("ROLE_ADMIN"));
-        userService.save(user);
-        return "redirect:findall";
-    }
-
-    @GetMapping("/findall")
-    public String findAll() {
-        return "adminView/findAll";
-    }
 
     @GetMapping("edit")
     public String edit(Model model, @RequestParam Long id) {
         User user = userService.findById(id);
-        model.addAttribute("admin", user);
-        return "adminView/edit";
+        model.addAttribute("user", user);
+        return "user/edit";
     }
 
     @PostMapping("edit")
     public String edited(Model model, @RequestParam Long id) {
-        User user = (User) model.getAttribute("admin");
+        User user = (User) model.getAttribute("user");
         userService.edit(user);
         return "redirect:findAll";
     }
