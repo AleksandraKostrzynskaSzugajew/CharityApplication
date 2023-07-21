@@ -15,8 +15,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @RequiredArgsConstructor
 public class SesSecurityConfig {
 
-    private final BCryptPasswordEncoder passwordEncoder;
-
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -34,8 +32,10 @@ public class SesSecurityConfig {
                 //** zaglebien dowolna ilosc
 
                 .authorizeHttpRequests((requests) -> requests
-                                .requestMatchers("/", "/home", "/home/register", "/home/logout", "/home/login", "/css/**", "/js/**", "/images/**").permitAll()
+                                .requestMatchers("/home/**", "/css/**", "/js/**", "/images/**", "/home/css/**", "/home/js/**", "/home/login/**", "/donate/**").permitAll()
 //                        .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+//                        "/", "/home/**", "/home/register", "/home/logout", "/home/login", "/css/**", "/js/**", "/images/**"
+
 //                        .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
@@ -43,7 +43,7 @@ public class SesSecurityConfig {
                         .loginPage("/home/login")
                         .loginProcessingUrl("/home/login")
                         .permitAll()
-                        .defaultSuccessUrl("/user/loggedin") // Domyślna strona dla użytkownika
+                        .defaultSuccessUrl("/home") // Domyślna strona dla użytkownika
 
                 )
                 .logout((logout) -> logout.logoutUrl("/logout").logoutSuccessUrl("/login")

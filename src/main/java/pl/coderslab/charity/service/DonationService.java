@@ -3,20 +3,18 @@ package pl.coderslab.charity.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.charity.entity.Donation;
-import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.repository.DonationRepository;
-import pl.coderslab.charity.repository.InstitutionRepository;
-
-import java.util.List;
 
 @Service
 @Transactional
 public class DonationService {
 
     private final DonationRepository donationRepository;
+    private final UserService userService;
 
-    public DonationService(DonationRepository donationRepository) {
+    public DonationService(DonationRepository donationRepository, UserService userService) {
         this.donationRepository = donationRepository;
+        this.userService = userService;
     }
 
     public int numberOfDonatedSacks() {
@@ -28,6 +26,16 @@ public class DonationService {
     }
 
     public void save(Donation donation) {
-        donationRepository.save(donation);
+
+        Long userId = userService.getCurrentUser();
+
+        if (userId != null) {
+            donation.setUserId(userId);
+            donationRepository.save(donation);
+        } else {
+            donation.setUserId(1L);
+            donationRepository.save(donation);
+        }
+
     }
 }

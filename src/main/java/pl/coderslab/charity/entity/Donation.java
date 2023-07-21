@@ -41,4 +41,6 @@ public class Donation {
 
     private String phone;
 
+    private Long userId;
+
 }

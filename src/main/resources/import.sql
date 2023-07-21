@@ -12,3 +12,9 @@ insert into category (name) value ("Zabawki");
 insert into category (name) value ("Ubrania");
 insert into category (name) value ("Buty");
 insert into category (name) value ("Inne");
+
+insert into user ( email, password) values ( "guest@wp.pl", "$2a$10$zzlH6E3frv97E2OKO58XnuowaZz57.zGzqNoMa6CJgyT48mJjvyjq");
+insert into user ( email, password) values ("admin@wp.pl", "$2a$10$zzlH6E3frv97E2OKO58XnuowaZz57.zGzqNoMa6CJgyT48mJjvyjq");
+
+insert into role (name) values ("ROLE_ADMIN");
+insert into role (name) values ("ROLE_USER");

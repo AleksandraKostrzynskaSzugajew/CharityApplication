@@ -8,9 +8,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.Institution;
+import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.service.CategoryService;
 import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.service.InstitutionService;
+import pl.coderslab.charity.service.UserService;
+
 import java.util.List;
 
 @Controller
@@ -19,11 +22,13 @@ public class DonationController {
     private final InstitutionService institutionService;
     private final CategoryService categoryService;
     private final DonationService donationService;
+    private final UserService userService;
 
-    public DonationController(InstitutionService institutionService, CategoryService categoryService, DonationService donationService) {
+    public DonationController(InstitutionService institutionService, CategoryService categoryService, DonationService donationService, UserService userService) {
         this.institutionService = institutionService;
         this.categoryService = categoryService;
         this.donationService = donationService;
+        this.userService = userService;
     }
 
     @GetMapping("/donate")
@@ -33,6 +38,9 @@ public class DonationController {
         model.addAttribute("categories", categories);
         model.addAttribute("institutions", institutions);
         model.addAttribute("donation", new Donation());
+
+        Long userId = userService.getCurrentUser();
+        model.addAttribute("userId", userId);
 
         return "form";
     }
