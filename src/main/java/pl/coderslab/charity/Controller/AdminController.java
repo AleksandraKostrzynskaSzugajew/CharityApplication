@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.entity.Institution;
+import pl.coderslab.charity.entity.Role;
 import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.service.AdminService;
 import pl.coderslab.charity.service.RoleService;
@@ -33,20 +34,25 @@ public class AdminController {
     }
 
     @GetMapping("/findall")
-    public List<User> findAllAdmins() {
-        return adminService.findAllAdmins(1L);
+    public String findAllAdmins() {
+        return "adminView/findAll";
     }
 
     @GetMapping("/save")
     public String save(Model model) {
-        model.addAttribute("admin", new User());
+        model.addAttribute("user", new User());
         return "adminView/save";
     }
 
     @PostMapping("/save")
     public String saved(@ModelAttribute User user) {
-        user.setRole(roleService.findByName("ROLE_ADMIN"));
+        Role role = roleService.findById(1L);
+        System.out.println("=====================================================");
+        System.out.println(role);
+
         userService.save(user);
+        user.setRole(role);
+        userService.edit(user);
         return "redirect:findall";
     }
 
@@ -55,25 +61,24 @@ public class AdminController {
 //        return "adminView/findAll";
 //    }
 
-    @GetMapping("edit")
+    @GetMapping("/edit")
     public String edit(Model model, @RequestParam Long id) {
         User user = userService.findById(id);
-        model.addAttribute("admin", user);
+        model.addAttribute("adminToEdit", user);
         return "adminView/edit";
     }
 
-    @PostMapping("edit")
-    public String edited(Model model, @RequestParam Long id) {
-        User user = (User) model.getAttribute("admin");
+    @PostMapping("/edit")
+    public String edited(User user) {
         userService.edit(user);
-        return "redirect:findAll";
+        return "redirect:findall";
     }
 
 
     @GetMapping("/remove")
     public String remove(@RequestParam Long id) {
         userService.deleteById(id);
-        return "redirect:findAll";
+        return "redirect:findall";
     }
 
 }

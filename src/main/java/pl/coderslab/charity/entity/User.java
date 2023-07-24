@@ -25,4 +25,6 @@ public class User {
     private Role role;
 
     private boolean isBlocked;
+
+    private String comment;
 }

@@ -11,20 +11,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
-    <link rel="stylesheet" href="<c:url value="/css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/css/styleAdmin.css"/>"/>
 </head>
 <body>
-<%@ include file="institution/header.jsp" %>
 
-<form:form method="post" action="admin/inst/edited" modelAttribute="institution">
+<div class="image-container">
+    <img src="<c:url value="/images/adminlogo.jpg"/>" alt="logo for admin"/>
+</div>
 
-    <div>Nazwa instytucji : <form:input path="name"/></div>
-    <div>Cel : <form:input path="description"/></div>
+<h2 class="center-text">Edytuj Instytucję</h2>
+<form:form method="post" action="admin/inst/edited" modelAttribute="institution" class="custom-form">
+
+    <div class="form-group">
+        <label>Nazwa instytucji:</label>
+        <form:input path="name" class="form-input" />
+    </div>
+
+    <div class="form-group">
+        <label>Cel:</label>
+        <form:input path="description" class="form-input" />
+    </div>
+
     <form:hidden path="id"/>
-    <input type="submit" value="Aktualizuj">
+    <input type="submit" value="Aktualizuj" class="form-btn">
 
 </form:form>
 
-<%@ include file="institution/footer.jsp" %>
 </body>
 </html>

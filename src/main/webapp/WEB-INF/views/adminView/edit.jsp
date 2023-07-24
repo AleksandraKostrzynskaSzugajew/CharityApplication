@@ -11,20 +11,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
-    <link rel="stylesheet" href="<c:url value="/css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/css/styleAdmin.css"/>"/>
 </head>
 <body>
-<%@ include file="../header.jsp" %>
 
-<form:form method="post" action="admin/admin/edited" modelAttribute="admin">
+<div class="image-container">
+    <img src="<c:url value="/images/adminlogo.jpg"/>" alt="logo for admin" class="custom-image"/>
+</div>
 
-    <div>Email  : <form:input path="email"/></div>
-    <div>Rola : <form:input path="role"/></div>
+<form:form method="post" action="/admin/admin/edit" modelAttribute="adminToEdit" class="custom-form">
+    <div>Email  : <form:input path="email" class="custom-input"/></div>
+    <div>Rola : <form:input path="role" class="custom-input"/></div>
+    <div>Komentarz : <form:input path="comment" class="custom-input"/></div>
     <form:hidden path="id"/>
-    <input type="submit" value="Aktualizuj">
-
+    <input type="submit" value="Aktualizuj" class="custom-button">
 </form:form>
 
-<%@ include file="../footer.jsp" %>
 </body>
 </html>

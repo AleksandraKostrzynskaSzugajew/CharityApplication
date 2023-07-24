@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 
@@ -33,11 +32,12 @@ public class SesSecurityConfig {
 
                 .authorizeHttpRequests((requests) -> requests
                                 .requestMatchers("/css/**", "/js/**",
-                                        "/images/**", "/home/login/**", "/home/register/**").permitAll()
+                                        "/home/**",
+                                        "/images/**", "/home/login/**", "/home/register/**", "/home/donate/**", "/donated/**").permitAll()
 //                        .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
 //                        "/", "/home/**", "/home/register", "/home/logout", "/home/login", "/css/**", "/js/**", "/images/**"
 
-//                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form

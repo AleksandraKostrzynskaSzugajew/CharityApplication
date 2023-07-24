@@ -40,7 +40,7 @@
     </section>
 
   <%@ include file="footer.jsp" %>
-  <script src="<c:url value="js/app.js"/>"></script>
+  <script src="<c:url value="/js/app.js"/>"></script>
 
   </body>
 </html>

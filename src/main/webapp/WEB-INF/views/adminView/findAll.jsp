@@ -1,47 +1,49 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="pl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <link rel="stylesheet" href="<c:url value="/css/style.css"/>"/>
-  </head>
-  <body>
-  <%@ include file="institution/header.jsp" %>
-
-
-  <table>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <title>Document</title>
+  <link rel="stylesheet" href="<c:url value="/css/styleAdmin.css"/>"/>
+</head>
+<body>
+<h3> Wszyscy administratorzy </h3>
+<br>
+<br>
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Email</th>
+    <th>Rola</th>
+    <th>Komentarz</th>
+  </tr>
+  <c:forEach items="${admins}" var="admin">
     <tr>
-      <th>Id</th>
-      <th>Email</th>
-      <th>Rola</th>
+      <td>${admin.id}</td>
+      <td>${admin.email}</td>
+      <td>${admin.role.getName()}</td>
+      <td>${admin.comment}</td>
+      <td><a href="<c:url value='/admin/admin/edit?id=${admin.id}'/>" class="edit-link">Edytuj</a></td>
+      <td><a href="<c:url value='/admin/admin/remove?id=${admin.id}'/>" class="delete-link" onclick="return confirm('Czy jesteś pewien?')">Usuń</a></td>
     </tr>
-    <c:forEach items="${admins}" var="admin">
-      <tr>
-        <td>${admin.id}</td>
-        <td>${admin.name}</td>
-        <td>${admin.role}</td>
+  </c:forEach>
+</table>
+<br>
+<br>
+<br>
+<td><a href="<c:url value='/admin/admin/save' />" class="add-link">Dodaj nowego administratora</a></td>
+<br>
+<br>
+<td><a href="<c:url value='/admin/home' />" class="home-link">Powrót na stronę główną</a></td>
 
-        <td><a href="<c:url value='/admin/admin/edit?id=${admin.id}'/>">Edytuj</a></td>
-        <td><a href="<c:url value='/admin/admin/delete?id=${admin.id}'/>" onclick="return confirm('Czy jestes pewien?')">Usun</a></td>
-      </tr>
-    </c:forEach>
-  </table>
-  <br>
-  <br>
-  <br>
-  <td><a href="<c:url value='/admin/admin/save' />">Dodaj noewgo administratora</a></td>
+<div class="image-container"><img src="<c:url value="/images/adminlogo.jpg"/>" alt="logo for admin"/></div>
 
-  <br>
-  <br>
-  <td><a href="<c:url value='/admin/home' />">Powrot na strone glowna</a></td>
 
-  <%@ include file="institution/footer.jsp" %>
-  </body>
+</body>
 </html>

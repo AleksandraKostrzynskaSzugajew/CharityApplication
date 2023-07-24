@@ -38,7 +38,7 @@ public class InstitutionsController {
 
     @GetMapping("/findall")
     public String findAll() {
-        return "findAll";
+        return "institution/findAll";
     }
 
     @GetMapping("edit")

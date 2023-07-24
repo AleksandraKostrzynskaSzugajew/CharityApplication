@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
-    <link rel="stylesheet" href="<c:url value="css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/css/style.css"/>"/>
 </head>
 
 
@@ -21,7 +21,7 @@
         <br>
         O Nas
         <br>
-        <img src="<c:url value="images/about-us.jpg"/> "/>
+        <img src="<c:url value="/images/about-us.jpg"/> "/>
         <br>
 
 
@@ -52,6 +52,6 @@
 
 <%@ include file="footer.jsp" %>
 
-<script src="<c:url value="js/app.js"/>"></script>
+<script src="<c:url value="/js/app.js"/>"></script>
 </body>
 </html>

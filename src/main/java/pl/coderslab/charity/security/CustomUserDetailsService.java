@@ -9,8 +9,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import pl.coderslab.charity.entity.Role;
 import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.repository.UserRepository;
+import pl.coderslab.charity.service.RoleService;
 
 
 import java.util.ArrayList;
@@ -22,10 +24,12 @@ import java.util.List;
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
+    private final RoleService roleService;
 
     @Autowired
-    public CustomUserDetailsService(UserRepository userRepository) {
+    public CustomUserDetailsService(UserRepository userRepository, RoleService roleService) {
         this.userRepository = userRepository;
+        this.roleService = roleService;
     }
 
     @Override
@@ -36,10 +40,11 @@ public class CustomUserDetailsService implements UserDetailsService {
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-        // Sprawdź, czy użytkownik ma rolę "admin" i dodaj ją do listy ról
-//        if (user.isAdmin()) {
-//            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-//        }
+      //   Sprawdź, czy użytkownik ma rolę "admin" i dodaj ją do listy ról
+        Role adminRole =  roleService.findByName("ROLE_ADMIN");
+        if (user.getRole().equals(adminRole)) {
+            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        }
 
         return org.springframework.security.core.userdetails.User.builder()
                 .username(user.getEmail())
