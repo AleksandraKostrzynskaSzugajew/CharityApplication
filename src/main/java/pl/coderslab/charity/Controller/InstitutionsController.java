@@ -24,6 +24,11 @@ public class InstitutionsController {
         return institutionService.findAll();
     }
 
+    @GetMapping("/findall")
+    public String findAll() {
+        return "institution/findAll";
+    }
+
     @GetMapping("/save")
     public String save(Model model) {
         model.addAttribute("institution", new Institution());
@@ -33,32 +38,28 @@ public class InstitutionsController {
     @PostMapping("/save")
     public String saved(@ModelAttribute Institution institution) {
         institutionService.save(institution);
-        return "redirect:findall";
-    }
-
-    @GetMapping("/findall")
-    public String findAll() {
         return "institution/findAll";
     }
 
-    @GetMapping("edit")
+
+
+    @GetMapping("/edit")
     public String edit(Model model, @RequestParam Long id) {
         Institution institution = institutionService.findById(id);
         model.addAttribute("institution", institution);
         return "institution/edit";
     }
 
-    @PostMapping("edit")
-    public String edited(Model model, @RequestParam Long id) {
-        Institution institution = (Institution) model.getAttribute("institution");
+    @PostMapping("/edit")
+    public String edited(Institution institution) {
         institutionService.edit(institution);
-        return "redirect:findAll";
+        return "redirect:findall";
     }
 
 
     @GetMapping("/remove")
     public String remove(@RequestParam Long id) {
         institutionService.deleteById(id);
-        return "redirect:findAll";
+        return "redirect:findall";
     }
 }

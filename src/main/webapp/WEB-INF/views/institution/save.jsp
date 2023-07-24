@@ -14,10 +14,12 @@
   <link rel="stylesheet" href="<c:url value="/css/styleAdmin.css"/>"/>
 </head>
 <body>
-
+<div class="image-container">
+  <img src="<c:url value="/images/adminlogo.jpg"/>" alt="logo for admin"/>
+</div>
 <h3 class="center-text">Dodaj nowa instytucje</h3>
 
-<form:form method="post" action="admin/inst/save" modelAttribute="institution" class="custom-form">
+<form:form method="post"  modelAttribute="institution" class="custom-form">
 
   <div class="form-group">
     <label>Nazwa:</label>

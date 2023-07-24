@@ -20,7 +20,7 @@
 </div>
 
 <h2 class="center-text">Edytuj Instytucję</h2>
-<form:form method="post" action="admin/inst/edited" modelAttribute="institution" class="custom-form">
+<form:form method="post"  modelAttribute="institution" class="custom-form">
 
     <div class="form-group">
         <label>Nazwa instytucji:</label>

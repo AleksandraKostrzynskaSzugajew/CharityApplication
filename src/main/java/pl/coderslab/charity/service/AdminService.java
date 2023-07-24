@@ -22,6 +22,6 @@ public class AdminService {
     }
 
     public List<User> findAllAdmins(Long roleId) {
-        return findAllByRoleId(1L);
+        return findAllByRoleId(roleId);
     }
 }

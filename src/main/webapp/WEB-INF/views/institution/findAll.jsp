@@ -34,7 +34,7 @@
       <td>${institution.description}</td>
 
       <td><a href="<c:url value='/admin/inst/edit?id=${institution.id}'/>" class="btn edit-link">Edytuj</a></td>
-      <td><a href="<c:url value='/admin/inst/delete?id=${institution.id}'/>" onclick="return confirm('Are you sure?')" class="btn delete-link">Usun</a></td>
+      <td><a href="<c:url value='/admin/inst/remove?id=${institution.id}'/>" onclick="return confirm('Are you sure?')" class="btn delete-link">Usun</a></td>
     </tr>
   </c:forEach>
 </table>

@@ -11,7 +11,7 @@ import pl.coderslab.charity.service.UserService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/admin/user")
 public class UserController {
 
 
@@ -30,9 +30,10 @@ public class UserController {
         return adminService.findAllAdmins(2L);
     }
 
+
     @GetMapping("/findall")
-    public List<User> findAllUsers() {
-        return adminService.findAllByRoleId(1L);
+    public String findAllUsersView() {
+        return "user/findAll";
     }
 
 
@@ -44,17 +45,16 @@ public class UserController {
     }
 
     @PostMapping("edit")
-    public String edited(Model model, @RequestParam Long id) {
-        User user = (User) model.getAttribute("user");
+    public String edited(User user) {
         userService.edit(user);
-        return "redirect:findAll";
+        return "user/findAll";
     }
 
 
     @GetMapping("/remove")
     public String remove(@RequestParam Long id) {
         userService.deleteById(id);
-        return "redirect:findAll";
+        return "user/findAll";
     }
 
 }
