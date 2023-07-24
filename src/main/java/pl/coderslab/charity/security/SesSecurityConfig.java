@@ -32,7 +32,8 @@ public class SesSecurityConfig {
                 //** zaglebien dowolna ilosc
 
                 .authorizeHttpRequests((requests) -> requests
-                                .requestMatchers("/home/**", "/css/**", "/js/**", "/images/**", "/home/css/**", "/home/js/**", "/home/login/**", "/donate/**").permitAll()
+                                .requestMatchers("/css/**", "/js/**",
+                                        "/images/**", "/home/login/**", "/home/register/**").permitAll()
 //                        .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
 //                        "/", "/home/**", "/home/register", "/home/logout", "/home/login", "/css/**", "/js/**", "/images/**"
 
@@ -43,6 +44,7 @@ public class SesSecurityConfig {
                         .loginPage("/home/login")
                         .loginProcessingUrl("/home/login")
                         .permitAll()
+                        .usernameParameter("email")
                         .defaultSuccessUrl("/home") // Domyślna strona dla użytkownika
 
                 )

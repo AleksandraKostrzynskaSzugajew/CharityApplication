@@ -164,6 +164,7 @@
                     </ul>
                 </div>
 
+
                 <div class="form-section">
                     <h4>Wybrane kategorie:</h4>
                     <ul id="summary-categories"></ul>

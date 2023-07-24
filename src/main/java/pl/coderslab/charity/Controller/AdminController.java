@@ -50,10 +50,10 @@ public class AdminController {
         return "redirect:findall";
     }
 
-    @GetMapping("/findall")
-    public String findAll() {
-        return "adminView/findAll";
-    }
+//    @GetMapping("/findall")
+//    public String findAllUsers() {
+//        return "adminView/findAll";
+//    }
 
     @GetMapping("edit")
     public String edit(Model model, @RequestParam Long id) {

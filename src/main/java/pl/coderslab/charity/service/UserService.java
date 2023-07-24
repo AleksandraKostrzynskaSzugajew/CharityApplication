@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.repository.UserRepository;
 
+import java.util.Optional;
+
 @Service
 @Transactional
 public class UserService {
@@ -32,8 +34,12 @@ public class UserService {
     }
 
     public Long findByEmail(String email) {
-        User user = userRepository.findByEmail(email);
-        return user.getId();
+        Optional<User> user = userRepository.findByEmail(email);
+        if (user.isPresent()) {
+            return user.get().getId();
+        } else {
+            return -1L;
+        }
     }
 
     public Long getCurrentUser() {

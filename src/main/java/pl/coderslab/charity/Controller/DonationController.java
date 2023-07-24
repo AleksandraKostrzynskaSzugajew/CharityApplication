@@ -31,7 +31,7 @@ public class DonationController {
         this.userService = userService;
     }
 
-    @GetMapping("/donate")
+    @GetMapping("/home/donate")
     public String getCategories(Model model) {
         List<Category> categories = categoryService.findAll();
         List<Institution> institutions = institutionService.findAll();
