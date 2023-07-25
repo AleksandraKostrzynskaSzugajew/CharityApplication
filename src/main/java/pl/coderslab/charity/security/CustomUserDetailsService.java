@@ -2,6 +2,7 @@ package pl.coderslab.charity.security;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -39,6 +40,15 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+        // Sprawdź, czy konto użytkownika jest aktywne (enabled == true)
+//        if (!user.isEnabled()) {
+//            // Tu rzuć wyjątek tylko jeśli konto jest zablokowane (enabled == false).
+//            throw new DisabledException("Twoje konto jest zablokowane.");
+//        }
+//
+//        System.out.println("=======================================================");
+//        System.out.println("Username: " + user.getEmail() + ", Enabled: " + user.isEnabled());
 
       //   Sprawdź, czy użytkownik ma rolę "admin" i dodaj ją do listy ról
         Role adminRole =  roleService.findByName("ROLE_ADMIN");

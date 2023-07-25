@@ -37,17 +37,29 @@ public class SesSecurityConfig {
 //                        .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
 //                        "/", "/home/**", "/home/register", "/home/logout", "/home/login", "/css/**", "/js/**", "/images/**"
 
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                                .requestMatchers("/admin/**").hasRole("ADMIN")
                                 .anyRequest().authenticated()
                 )
+
                 .formLogin((form) -> form
                         .loginPage("/home/login")
                         .loginProcessingUrl("/home/login")
                         .permitAll()
                         .usernameParameter("email")
-                        .defaultSuccessUrl("/home") // Domyślna strona dla użytkownika
-
+                        .defaultSuccessUrl("/home/loggedin", false) // Dla zwykłych użytkowników
+                        .defaultSuccessUrl("/home/admin", false) // Dla administratorów
                 )
+
+
+
+//                .formLogin((form) -> form
+//                        .loginPage("/home/login")
+//                        .loginProcessingUrl("/home/login")
+//                        .permitAll()
+//                        .usernameParameter("email")
+//                        .defaultSuccessUrl("/home") // Domyślna strona dla użytkownika
+//
+//                )
                 .logout((logout) -> logout.logoutUrl("/logout").logoutSuccessUrl("/login")
                         .invalidateHttpSession(true).deleteCookies("JSESSIONID").permitAll());
 

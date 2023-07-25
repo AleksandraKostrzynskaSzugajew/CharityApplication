@@ -8,10 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.entity.User;
-import pl.coderslab.charity.service.DonationService;
-import pl.coderslab.charity.service.InstitutionService;
-import pl.coderslab.charity.service.RoleService;
-import pl.coderslab.charity.service.UserService;
+import pl.coderslab.charity.service.*;
 
 import java.util.List;
 
@@ -24,12 +21,14 @@ public class HomePageController {
 
     private final UserService userService;
     private final RoleService roleService;
+    private final AdminService adminService;
 
-    public HomePageController(InstitutionService institutionService, DonationService donationService, UserService userService, RoleService roleService) {
+    public HomePageController(InstitutionService institutionService, DonationService donationService, UserService userService, RoleService roleService, AdminService adminService) {
         this.institutionService = institutionService;
         this.donationService = donationService;
         this.userService = userService;
         this.roleService = roleService;
+        this.adminService = adminService;
     }
 
     @GetMapping
@@ -43,7 +42,13 @@ public class HomePageController {
         Long numberOfDonations = donationService.countDonations();
         model.addAttribute("numberOfDonations", numberOfDonations);
 
+
         return "home";
+    }
+
+    @GetMapping("/admin")
+    public String adminHomePage() {
+        return "adminView/adminHomePage";
     }
 
     @GetMapping("/about")
@@ -66,7 +71,6 @@ public class HomePageController {
     @PostMapping("/register")
     public String registered(@ModelAttribute User user) {
         user.setRole(roleService.findByName("ROLE_USER"));
-        user.setBlocked(false);
         userService.save(user);
         return "home";
     }

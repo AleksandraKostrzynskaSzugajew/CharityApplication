@@ -64,6 +64,12 @@ public class UserService {
 
     public void blockUser(Long id) {
         User user = findById(id);
-        user.setBlocked(true);
+        user.setEnabled(false);
+    }
+
+    public void unblockUser(long id) {
+
+        User user = findById(id);
+        user.setEnabled(true);
     }
 }

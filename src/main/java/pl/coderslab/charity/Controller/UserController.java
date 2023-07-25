@@ -57,4 +57,15 @@ public class UserController {
         return "user/findAll";
     }
 
+    @GetMapping("/block")
+    public String block(@RequestParam long id){
+        userService.blockUser(id);
+        return "user/findAll";
+    }
+
+    @GetMapping("/unblock")
+    public String unblock(@RequestParam long id){
+        userService.unblockUser(id);
+        return "user/findAll";
+    }
 }

@@ -25,6 +25,9 @@
         <div class="form-group">
           <input type="password" name="password" placeholder="Hasło" />
         </div>
+        <div class="form-group">
+          <input type="name" name="name" placeholder="Imie" />
+        </div>
 <%--        <div class="form-group">--%>
 <%--          <input type="password" name="password2" placeholder="Powtórz hasło" />--%>
 <%--        </div>--%>

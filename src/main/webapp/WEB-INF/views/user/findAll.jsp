@@ -21,20 +21,23 @@
         <th>Id</th>
         <th>Email</th>
         <th>Rola</th>
+        <th>Imie</th>
         <th>Komentarz</th>
         <th>Zablokowany</th>
+
     </tr>
     <c:forEach items="${users}" var="user">
         <tr>
             <td>${user.id}</td>
             <td>${user.email}</td>
             <td>${user.role.getName()}</td>
+            <td>${user.name}</td>
             <td>${user.comment}</td>
 
                 <%--w jezyku el--%>
             <td>
                 <c:choose>
-                    <c:when test="${user.blocked}">
+                    <c:when test="${!user.enabled}">
                         Zablokowany
                     </c:when>
                     <c:otherwise>
@@ -46,6 +49,10 @@
             <td><a href="<c:url value='/admin/user/edit?id=${user.id}'/>" class="edit-link">Edytuj</a></td>
             <td><a href="<c:url value='/admin/user/remove?id=${user.id}'/>" class="delete-link"
                    onclick="return confirm('Czy jesteś pewien?')">Usuń</a></td>
+            <td><a href="<c:url value='/admin/user/block?id=${user.id}'/>" class="edit-link"
+                   onclick="return confirm('Czy jesteś pewien?')">Zablokuj</a></td>
+            <td><a href="<c:url value='/admin/user/unblock?id=${user.id}'/>" class="edit-link"
+                   onclick="return confirm('Czy jesteś pewien?')">Odblokuj</a></td>
         </tr>
     </c:forEach>
 </table>
@@ -55,7 +62,7 @@
 <td><a href="<c:url value='/admin/user/save' />" class="add-link">Dodaj nowego użytkownika</a></td>
 <br>
 <br>
-<td><a href="<c:url value='/admin/home' />" class="home-link">Powrót na stronę główną</a></td>
+<td><a href="<c:url value='/home/admin' />" class="home-link">Powrót na stronę główną</a></td>
 <div class="image-container"><img src="<c:url value="/images/adminlogo.jpg"/>" alt="logo for admin"/></div>
 
 

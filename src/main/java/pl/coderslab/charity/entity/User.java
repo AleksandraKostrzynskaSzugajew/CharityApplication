@@ -24,7 +24,10 @@ public class User {
     @ManyToOne
     private Role role;
 
-    private boolean isBlocked;
+    @Column(columnDefinition = "boolean default false")
+    private boolean enabled;
 
     private String comment;
+
+    private String name;
 }

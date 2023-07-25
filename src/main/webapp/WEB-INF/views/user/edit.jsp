@@ -22,6 +22,7 @@
     <div>Email : <form:input path="email"/></div>
     <div>Rola : <form:input path="role"/></div>
     <div>Komentarz : <form:input path="comment"/></div>
+    <div>Imie : <form:input path="name"/></div>
     <form:hidden path="id"/>
     <input type="submit" value="Aktualizuj">
 
