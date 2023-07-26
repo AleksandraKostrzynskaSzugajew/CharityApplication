@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.charity.email.EmailServiceImpl;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.entity.User;
+import pl.coderslab.charity.security.RegistrationService;
 import pl.coderslab.charity.service.*;
 
 import java.util.List;
@@ -23,12 +25,18 @@ public class HomePageController {
     private final RoleService roleService;
     private final AdminService adminService;
 
-    public HomePageController(InstitutionService institutionService, DonationService donationService, UserService userService, RoleService roleService, AdminService adminService) {
+    private final RegistrationService registrationService;
+
+    private final EmailServiceImpl emailServiceImpl;
+
+    public HomePageController(InstitutionService institutionService, DonationService donationService, UserService userService, RoleService roleService, AdminService adminService, RegistrationService registrationService, EmailServiceImpl emailServiceImpl) {
         this.institutionService = institutionService;
         this.donationService = donationService;
         this.userService = userService;
         this.roleService = roleService;
         this.adminService = adminService;
+        this.registrationService = registrationService;
+        this.emailServiceImpl = emailServiceImpl;
     }
 
     @GetMapping
@@ -68,10 +76,17 @@ public class HomePageController {
         return "register";
     }
 
+
+    //TODO wygasniecie tokenu po 24h
+
     @PostMapping("/register")
     public String registered(@ModelAttribute User user) {
         user.setRole(roleService.findByName("ROLE_USER"));
+        String token = registrationService.generateUniqueToken();
+        user.setUniqueToken(token);
         userService.save(user);
+        userService.sendActivationEmail(user);
+
         return "home";
     }
 

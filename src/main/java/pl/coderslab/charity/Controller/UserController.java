@@ -68,4 +68,10 @@ public class UserController {
         userService.unblockUser(id);
         return "user/findAll";
     }
+
+    @GetMapping("/activate")
+    public String activateAccount(@RequestParam String token){
+
+        return "activated";
+    }
 }

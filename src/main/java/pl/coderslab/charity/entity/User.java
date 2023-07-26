@@ -30,4 +30,5 @@ public class User {
     private String comment;
 
     private String name;
+    private String uniqueToken;
 }
