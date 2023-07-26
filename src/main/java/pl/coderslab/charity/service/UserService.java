@@ -101,7 +101,6 @@ public class UserService {
         );
 
 
-
         message.setText(body);
         message.setSubject(subject);
 
@@ -112,5 +111,9 @@ public class UserService {
         String activationEndpoint = "/activate";
 
         return baseUrl + activationEndpoint + "?token=" + token;
+    }
+
+    public User findByUniqueToken(String token) {
+        return userRepository.findByUniqueToken(token);
     }
 }

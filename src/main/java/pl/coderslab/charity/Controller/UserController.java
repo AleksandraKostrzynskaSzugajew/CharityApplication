@@ -9,6 +9,7 @@ import pl.coderslab.charity.service.RoleService;
 import pl.coderslab.charity.service.UserService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin/user")
@@ -58,20 +59,28 @@ public class UserController {
     }
 
     @GetMapping("/block")
-    public String block(@RequestParam long id){
+    public String block(@RequestParam long id) {
         userService.blockUser(id);
         return "user/findAll";
     }
 
     @GetMapping("/unblock")
-    public String unblock(@RequestParam long id){
+    public String unblock(@RequestParam long id) {
         userService.unblockUser(id);
         return "user/findAll";
     }
 
     @GetMapping("/activate")
-    public String activateAccount(@RequestParam String token){
+    public String activateAccount(@RequestParam String token) {
+        User user = userService.findByUniqueToken(token);
 
-        return "activated";
+        if (user != null) {
+            // Aktywuj konto użytkownika
+            user.setEnabled(true);
+            return "activated"; // Zwraca widok z potwierdzeniem aktywacji konta
+        } else {
+            // Token jest nieprawidłowy lub wygasł
+            return "invalidToken"; // Zwraca widok z komunikatem o nieprawidłowym lub wygasłym tokenie
+        }
     }
 }
