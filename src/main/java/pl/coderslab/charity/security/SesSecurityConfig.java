@@ -46,7 +46,7 @@ public class SesSecurityConfig {
                         .loginProcessingUrl("/home/login")
                         .permitAll()
                         .usernameParameter("email")
-                        .defaultSuccessUrl("/home/loggedin", false) // Dla zwykłych użytkowników
+                        .defaultSuccessUrl("/home", false) // Dla zwykłych użytkowników
                         .defaultSuccessUrl("/home/admin", false) // Dla administratorów
                 )
 
@@ -67,6 +67,4 @@ public class SesSecurityConfig {
         return http.build();
 
     }
-
-
 }

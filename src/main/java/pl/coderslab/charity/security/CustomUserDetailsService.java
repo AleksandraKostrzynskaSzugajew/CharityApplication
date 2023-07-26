@@ -41,11 +41,11 @@ public class CustomUserDetailsService implements UserDetailsService {
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-        // Sprawdź, czy konto użytkownika jest aktywne (enabled == true)
-//        if (!user.isEnabled()) {
-//            // Tu rzuć wyjątek tylko jeśli konto jest zablokowane (enabled == false).
-//            throw new DisabledException("Twoje konto jest zablokowane.");
-//        }
+//         Sprawdź, czy konto użytkownika jest aktywne (enabled == true)
+        if (!user.isEnabled()) {
+            // Tu rzuć wyjątek tylko jeśli konto jest zablokowane (enabled == false).
+            throw new UsernameNotFoundException("Twoje konto jest zablokowane.");
+        }
 //
 //        System.out.println("=======================================================");
 //        System.out.println("Username: " + user.getEmail() + ", Enabled: " + user.isEnabled());

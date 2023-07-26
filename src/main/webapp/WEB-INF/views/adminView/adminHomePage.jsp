@@ -11,7 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
-    <link rel="stylesheet" href="<c:url value="/css/styleAdmin.css"/>"/> <%-- Importowanie pliku CSS --%>
+    <link rel="stylesheet" href="<c:url value="/css/styleAdmin.css"/>"/>
+    <%-- Importowanie pliku CSS --%>
 </head>
 <body>
 
@@ -31,7 +32,11 @@
 <td><a href="<c:url value='/admin/user/findall' />" class="add-link">Zobacz wszystkich użytkownikow</a></td>
 <td><a href="<c:url value='/admin/inst/findall' />" class="add-link">Zobacz wszystkie fundacje</a></td>
 <td><a href="<c:url value='/admin/admin/findall' />" class="add-link">Zobacz wszystkich administratorow</a></td>
-<td><a href="<c:url value='/logout' />" class="add-link">Wyloguj</a></td>
+<form action="/logout" method="post">
+    <input type="submit" value="wyloguj">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
+</form>
 
 
 </body>
