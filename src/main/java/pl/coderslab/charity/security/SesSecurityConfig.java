@@ -33,7 +33,7 @@ public class SesSecurityConfig {
                 .authorizeHttpRequests((requests) -> requests
                                 .requestMatchers("/css/**", "/js/**",
                                         "/home/**",
-                                        "/images/**", "/home/login/**", "/home/register/**", "/home/donate/**", "/donated/**").permitAll()
+                                        "/images/**", "/home/login/**", "/home/register/**", "/home/donate/**", "/donated/**", "/home/activate").permitAll()
 //                        .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
 //                        "/", "/home/**", "/home/register", "/home/logout", "/home/login", "/css/**", "/js/**", "/images/**"
 

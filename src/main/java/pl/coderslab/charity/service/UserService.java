@@ -88,6 +88,7 @@ public class UserService {
         String activationLink = createActivationLink(user.getUniqueToken());
         SimpleMailMessage message = new SimpleMailMessage();
         String subject = "Witaj w CharityApp! Aktywuj swoje konto juz teraz!";
+        String to = user.getEmail();
         String body = String.format(
                 "Drogi %s,\n\n" +
                         "Witamy w CharityApp! Jesteśmy bardzo zadowoleni, że do nas dołączyłeś. Zacznij oddawać " +
@@ -102,13 +103,15 @@ public class UserService {
 
 
         message.setText(body);
+        message.setTo(to);
         message.setSubject(subject);
 
+        javaMailSender.send(message);
     }
 
     public String createActivationLink(String token) {
         String baseUrl = "http://localhost:8080"; // Zmienic na rzeczywisty adres URL swojej aplikacji na serwerze produkcyjnym
-        String activationEndpoint = "/activate";
+        String activationEndpoint = "/home/activate";
 
         return baseUrl + activationEndpoint + "?token=" + token;
     }

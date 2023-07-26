@@ -70,17 +70,4 @@ public class UserController {
         return "user/findAll";
     }
 
-    @GetMapping("/activate")
-    public String activateAccount(@RequestParam String token) {
-        User user = userService.findByUniqueToken(token);
-
-        if (user != null) {
-            // Aktywuj konto użytkownika
-            user.setEnabled(true);
-            return "activated"; // Zwraca widok z potwierdzeniem aktywacji konta
-        } else {
-            // Token jest nieprawidłowy lub wygasł
-            return "invalidToken"; // Zwraca widok z komunikatem o nieprawidłowym lub wygasłym tokenie
-        }
-    }
 }

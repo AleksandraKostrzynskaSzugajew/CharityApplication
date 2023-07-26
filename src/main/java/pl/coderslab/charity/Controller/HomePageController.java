@@ -2,10 +2,7 @@ package pl.coderslab.charity.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.charity.email.EmailServiceImpl;
 import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.entity.User;
@@ -88,6 +85,25 @@ public class HomePageController {
         userService.sendActivationEmail(user);
 
         return "home";
+    }
+
+    @GetMapping("/activate")
+    public String activateAccount(@RequestParam String token) {
+        User user = userService.findByUniqueToken(token);
+
+        if (user != null) {
+            // Aktywuj konto użytkownika
+            user.setEnabled(true);
+            userService.edit(user);
+            System.out.println("==============================================================================");
+            System.out.println("activated");
+            return "user/activated"; // Zwraca widok z potwierdzeniem aktywacji konta
+
+
+        } else {
+            // Token jest nieprawidłowy lub wygasł
+            return "invalidToken"; // Zwraca widok z komunikatem o nieprawidłowym lub wygasłym tokenie
+        }
     }
 
 }
