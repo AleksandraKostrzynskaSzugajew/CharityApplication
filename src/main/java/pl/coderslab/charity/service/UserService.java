@@ -1,7 +1,9 @@
 package pl.coderslab.charity.service;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,7 +16,8 @@ import pl.coderslab.charity.repository.UserRepository;
 import pl.coderslab.charity.security.RegistrationService;
 
 import java.util.Optional;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 @Service
 @Transactional
 public class UserService {
@@ -27,6 +30,8 @@ public class UserService {
     private final EmailServiceImpl emailService;
     private final JavaMailSender javaMailSender;
     private final RegistrationService registrationService;
+
+    private final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleService roleService, EmailServiceImpl emailService, JavaMailSender javaMailSender, RegistrationService registrationService) {
         this.userRepository = userRepository;
@@ -85,6 +90,7 @@ public class UserService {
         user.setEnabled(true);
     }
 
+    @Async
     public void sendActivationEmail(User user) {
         String activationLink = createActivationLink(user.getUniqueToken());
         SimpleMailMessage message = new SimpleMailMessage();
@@ -134,6 +140,9 @@ public class UserService {
     }
 
     public String resetPass(String email) {
+        // Inicjalizacja loggera dla klasy, w której znajduje się metoda.
+
+
         Long userId = findByEmail(email);
         User user = findById(userId);
         if (user != null) {
@@ -141,13 +150,19 @@ public class UserService {
             user.setResetToken(token);
             edit(user);
             sendResetPassEmail(user);
+            // Logowanie informacji o wysłaniu emaila resetującego hasło.
+            logger.info("Wysłano email resetujący hasło dla użytkownika o adresie email: {}", email);
             return "user/resetMailSent";
         } else {
+            // Logowanie informacji o nieznalezieniu użytkownika o podanym emailu.
+            logger.warn("Nie znaleziono użytkownika o adresie email: {}", email);
             return "user/noSuchUser";
         }
     }
 
 
+
+    @Async
     public void sendResetPassEmail(User user) {
         String activationLink = createResetPasswordLink(user.getResetToken());
         SimpleMailMessage message = new SimpleMailMessage();

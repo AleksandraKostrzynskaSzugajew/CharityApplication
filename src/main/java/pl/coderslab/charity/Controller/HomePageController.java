@@ -113,10 +113,8 @@ public class HomePageController {
 
     @PostMapping("/resetpass")
     public String resetPassword(@RequestParam String email) {
-
         userService.resetPass(email);
-
-        return "user/resetpass";
+        return "/home";
     }
 
     @GetMapping("/resetpassfm")

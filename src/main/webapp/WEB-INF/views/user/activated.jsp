@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<h2> Twoje konto zostalo aktywowane!</h2>
+<h2><spring:message code="konto_aktywowane"/></h2>
 
 <br>
 <br>

@@ -29,7 +29,19 @@ spring:
       mode: always
 
 
-logging:
+  logging:
   level:
     org.springframework.web: DEBUG
     org.hibernate: ERROR
+
+  messages:
+    basename: messages
+    encoding: UTF-8
+
+  task:
+    execution:
+      pool:
+        core-size: 5
+        max-size: 10
+        queue-capacity: 25
+
