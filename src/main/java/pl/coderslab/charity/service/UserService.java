@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.charity.email.EmailServiceImpl;
 import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.repository.UserRepository;
@@ -116,7 +117,58 @@ public class UserService {
         return baseUrl + activationEndpoint + "?token=" + token;
     }
 
+    public String createResetPasswordLink(String token) {
+
+        String baseUrl = "http://localhost:8080"; // Zmienic na rzeczywisty adres URL swojej aplikacji na serwerze produkcyjnym
+        String activationEndpoint = "/home/resetpassfm";
+
+        return baseUrl + activationEndpoint + "?token=" + token;
+    }
+
     public User findByUniqueToken(String token) {
         return userRepository.findByUniqueToken(token);
+    }
+
+    public User findByResetToken(String token) {
+        return userRepository.findByResetToken(token);
+    }
+
+    public String resetPass(String email) {
+        Long userId = findByEmail(email);
+        User user = findById(userId);
+        if (user != null) {
+            String token = registrationService.generateUniqueToken();
+            user.setResetToken(token);
+            edit(user);
+            sendResetPassEmail(user);
+            return "user/resetMailSent";
+        } else {
+            return "user/noSuchUser";
+        }
+    }
+
+
+    public void sendResetPassEmail(User user) {
+        String activationLink = createResetPasswordLink(user.getResetToken());
+        SimpleMailMessage message = new SimpleMailMessage();
+        String subject = "Tu w CharityApp! Reset hasla ";
+        String to = user.getEmail();
+        String body = String.format(
+                "Drogi %s,\n\n" +
+                        "Aby zresetowac swoje haslo kliknij w pozniszy link " +
+
+                        "<a href=\"%s\">Resetuj haslo</a>\n\n" +
+
+                        "\n" +
+                        "Zespół CharityApp",
+                user.getName(), activationLink
+        );
+
+
+        message.setText(body);
+        message.setTo(to);
+        message.setSubject(subject);
+
+        javaMailSender.send(message);
     }
 }

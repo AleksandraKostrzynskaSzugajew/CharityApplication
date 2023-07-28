@@ -12,6 +12,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
     <link rel="stylesheet" href="<c:url value="/css/style.css"/>"/>
+    <script src="<c:url value="/js/app.js"/>"></script>
+
   </head>
   <body>
   <%@ include file="header.jsp" %>
@@ -42,8 +44,29 @@
       </form:form>
     </section>
 
+  <script>
+    function validatePassword() {
+      const passwordInput = document.getElementById('password');
+      const password = passwordInput.value;
+
+      // Wyrażenie regularne do walidacji hasła
+      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+      if (!regex.test(password)) {
+        alert("Hasło powinno mieć co najmniej 8 znaków, zawierać dużą literę, małą literę, cyfrę oraz znak specjalny: @$!%*?&");
+        return false;
+      }
+
+      return true;
+    }
+
+    document.querySelector('form').addEventListener('submit', function(event) {
+      if (!validatePassword()) {
+        event.preventDefault();
+      }
+    });
+  </script>
   <%@ include file="footer.jsp" %>
-  <script src="<c:url value="/js/app.js"/>"></script>
 
   </body>
 </html>

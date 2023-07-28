@@ -106,4 +106,45 @@ public class HomePageController {
         }
     }
 
+    @GetMapping("/resetpass")
+    public String resetPasswordView() {
+        return "user/resetpass";
+    }
+
+    @PostMapping("/resetpass")
+    public String resetPassword(@RequestParam String email) {
+
+        userService.resetPass(email);
+
+        return "user/resetpass";
+    }
+
+    @GetMapping("/resetpassfm")
+    public String showResetForm(@RequestParam String token) {
+
+        User user = userService.findByResetToken(token);
+        if (user != null) {
+            user.setResetToken("");
+            userService.edit(user);
+            return "user/resetpassfrommail";
+        } else return "user/noSuchUser";
+    }
+
+    @PostMapping("/resetpassfm")
+    public String resetForm(@RequestParam String password1,
+                            @RequestParam String password2,
+                            @RequestParam Long id) {
+
+        User user = userService.findById(id);
+
+        String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+
+        if (password1.equals(password2) && password1.matches(passwordRegex)) {
+            user.setPassword(password1);
+            userService.edit(user);
+        }
+        return "login";
+    }
+
+
 }
