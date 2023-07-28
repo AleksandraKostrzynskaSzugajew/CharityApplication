@@ -24,14 +24,16 @@
     <th>Komentarz</th>
   </tr>
   <c:forEach items="${admins}" var="admin">
-    <tr>
-      <td>${admin.id}</td>
-      <td>${admin.email}</td>
-      <td>${admin.role.getName()}</td>
-      <td>${admin.comment}</td>
-      <td><a href="<c:url value='/admin/admin/edit?id=${admin.id}'/>" class="edit-link">Edytuj</a></td>
-      <td><a href="<c:url value='/admin/admin/remove?id=${admin.id}'/>" class="delete-link" onclick="return confirm('Czy jesteś pewien?')">Usuń</a></td>
-    </tr>
+    <c:if test="${admin.id != loggedInAdminId}">
+      <tr>
+        <td>${admin.id}</td>
+        <td>${admin.email}</td>
+        <td>${admin.role.getName()}</td>
+        <td>${admin.comment}</td>
+        <td><a href="<c:url value='/admin/admin/edit?id=${admin.id}'/>" class="edit-link">Edytuj</a></td>
+        <td><a href="<c:url value='/admin/admin/remove?id=${admin.id}'/>" class="delete-link" onclick="return confirm('Czy jesteś pewien?')">Usuń</a></td>
+      </tr>
+    </c:if>
   </c:forEach>
 </table>
 <br>
@@ -43,7 +45,6 @@
 <td><a href="<c:url value='/admin/home' />" class="home-link">Powrót na stronę główną</a></td>
 
 <div class="image-container"><img src="<c:url value="/images/adminlogo.jpg"/>" alt="logo for admin"/></div>
-
 
 </body>
 </html>

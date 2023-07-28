@@ -21,6 +21,7 @@ public class AdminController {
 
     private final RoleService roleService;
 
+
     public AdminController(UserService userService, AdminService adminService, RoleService roleService) {
         this.userService = userService;
         this.adminService = adminService;
@@ -29,12 +30,20 @@ public class AdminController {
 
 
     @ModelAttribute("admins")
-    public List<User> admins() {
+    public List<User> admins(Model model) {
+
         return adminService.findAllAdmins(1L);
     }
 
+    @ModelAttribute("loggedInAdminId")
+    public String loggedInAdminId(Model model) {
+        Long loggedInAdminId = userService.getCurrentUser();
+        return loggedInAdminId.toString();
+
+    }
+
     @GetMapping("/findall")
-    public String findAllAdmins() {
+    public String findAllAdmins(Model model) {
         return "adminView/findAll";
     }
 
