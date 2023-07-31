@@ -10,9 +10,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
-    <link rel="stylesheet" href="<c:url value="/css/styleAdmin.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/css/style.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/css/styleOla.css"/>"/>
 </head>
 <body>
+<%@ include file="../header.jsp" %>
+<br>
+<br>
+<br>
 <h3> Wszyscy użytkownicy </h3>
 <br>
 <br>
@@ -23,8 +28,7 @@
         <th>Rola</th>
         <th>Imie</th>
         <th>Komentarz</th>
-        <th>Zablokowany</th>
-
+        <th>Status</th>
     </tr>
     <c:forEach items="${users}" var="user">
         <tr>
@@ -33,38 +37,28 @@
             <td>${user.role.getName()}</td>
             <td>${user.name}</td>
             <td>${user.comment}</td>
-
-                <%--w jezyku el--%>
             <td>
                 <c:choose>
                     <c:when test="${!user.enabled}">
-                        Zablokowany
+                        <a href="<c:url value='/admin/user/block?id=${user.id}'/>" class="edit-link" onclick="return confirm('Czy jesteś pewien?')">Zablokuj</a>
                     </c:when>
                     <c:otherwise>
-                        Niezablokowany
+                        <a href="<c:url value='/admin/user/unblock?id=${user.id}'/>" class="edit-link" onclick="return confirm('Czy jesteś pewien?')">Odblokuj</a>
                     </c:otherwise>
                 </c:choose>
             </td>
-
-            <td><a href="<c:url value='/admin/user/edit?id=${user.id}'/>" class="edit-link">Edytuj</a></td>
-            <td><a href="<c:url value='/admin/user/remove?id=${user.id}'/>" class="delete-link"
-                   onclick="return confirm('Czy jesteś pewien?')">Usuń</a></td>
-            <td><a href="<c:url value='/admin/user/block?id=${user.id}'/>" class="edit-link"
-                   onclick="return confirm('Czy jesteś pewien?')">Zablokuj</a></td>
-            <td><a href="<c:url value='/admin/user/unblock?id=${user.id}'/>" class="edit-link"
-                   onclick="return confirm('Czy jesteś pewien?')">Odblokuj</a></td>
         </tr>
     </c:forEach>
 </table>
 <br>
 <br>
 <br>
-<td><a href="<c:url value='/admin/user/save' />" class="add-link">Dodaj nowego użytkownika</a></td>
+<%--<td><a href="<c:url value='/admin/user/save' />" class="add-link">Dodaj nowego użytkownika</a></td>--%>
 <br>
 <br>
-<td><a href="<c:url value='/home/admin' />" class="home-link">Powrót na stronę główną</a></td>
-<div class="image-container"><img src="<c:url value="/images/adminlogo.jpg"/>" alt="logo for admin"/></div>
+<br>
+<br>
 
-
+<%@ include file="../footer.jsp" %>
 </body>
 </html>

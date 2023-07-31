@@ -11,21 +11,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
-    <link rel="stylesheet" href="<c:url value="/css/styleAdmin.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/css/styleOla.css"/>"/>
 </head>
 <body>
 
-<div class="image-container">
-    <img src="<c:url value="/images/adminlogo.jpg"/>" alt="logo for admin" class="custom-image"/>
-</div>
-
+<%@include file="../header.jsp"%>
+<br>
+<h2>Edytuj administratora</h2>
+<br>
 <form:form method="post" action="/admin/admin/edit" modelAttribute="adminToEdit" class="custom-form">
     <div>Email  : <form:input path="email" class="custom-input"/></div>
+    <br>
+    <br>
     <div>Rola : <form:input path="role" class="custom-input"/></div>
+    <br>
+    <br>
     <div>Komentarz : <form:input path="comment" class="custom-input"/></div>
     <form:hidden path="id"/>
+    <br>
+    <br>
     <input type="submit" value="Aktualizuj" class="custom-button">
 </form:form>
+<br>
+<br>
+<br>
+<%@include file="../footer.jsp"%>
 
 </body>
 </html>

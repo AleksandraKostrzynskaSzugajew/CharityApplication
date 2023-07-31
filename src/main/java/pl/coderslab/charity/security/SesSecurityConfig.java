@@ -6,7 +6,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 
 
 @Configuration
@@ -33,7 +35,7 @@ public class SesSecurityConfig {
                 .authorizeHttpRequests((requests) -> requests
                                 .requestMatchers("/css/**", "/js/**",
                                         "/home/**",
-                                        "/images/**", "/home/login/**", "/home/register/**", "/home/donate/**", "/donated/**", "/home/activate", "/home/resetpass",
+                                        "/images/**", "/home/login/**", "/home/donate/**", "/donated/**", "/home/activate", "/home/resetpass",
                                         "/home/resetpassfm").permitAll()
 //                        .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
 //                        "/", "/home/**", "/home/register", "/home/logout", "/home/login", "/css/**", "/js/**", "/images/**"
@@ -58,5 +60,13 @@ public class SesSecurityConfig {
 
         return http.build();
 
+    }
+
+
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        StrictHttpFirewall firewall = new StrictHttpFirewall();
+        firewall.setAllowBackSlash(true);
+        return (web) -> web.httpFirewall(firewall);
     }
 }

@@ -19,18 +19,30 @@
     <nav class="container container--70">
         <ul class="nav--actions">
             <c:if test="${pageContext.request.userPrincipal != null}">
-                <%-- Jeśli użytkownik jest zalogowany, wyświetl "Witaj [imię]" --%>
+                <%-- Jeśli użytkownik jest zalogowany, wyświetl "Witaj [imię]" i przycisk "Wyloguj" --%>
                 <li><span class="btn btn--small btn--without-border">Witaj ${pageContext.request.userPrincipal.name}</span></li>
+                <li>
+                    <form action="/logout" method="post">
+                        <input type="submit" value="Wyloguj" class="btn btn--small btn--without-border" />
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                    </form>
+                </li>
             </c:if>
             <c:if test="${pageContext.request.userPrincipal == null}">
-                <%-- Jeśli użytkownik nie jest zalogowany, wyświetl przycisk "Zaloguj się" --%>
+                <%-- Jeśli użytkownik nie jest zalogowany, wyświetl przycisk "Zaloguj się" oraz "Załóż konto" --%>
                 <li><a href="/home/login" class="btn btn--small btn--without-border">Zaloguj</a></li>
+                <li><a href="/home/register" class="btn btn--small btn--highlighted">Załóż konto</a></li>
             </c:if>
-            <li><a href="/home/register" class="btn btn--small btn--highlighted">Załóż konto</a></li>
+            <c:if test="${pageContext.request.userPrincipal != null && pageContext.request.isUserInRole('ADMIN')}">
+                <%-- Jeśli użytkownik jest zalogowany jako admin, wyświetl te przyciski --%>
+                <li><a href="/admin/user/findall" class="btn btn--small btn--without-border">Zarządzaj użytkownikami</a></li>
+                <li><a href="/admin/inst/findall" class="btn btn--small btn--without-border">Zarządzaj fundacjami</a></li>
+                <li><a href="/admin/admin/findall" class="btn btn--small btn--without-border">Zarządzaj administratorami</a></li>
+            </c:if>
         </ul>
 
         <ul>
-            <li><a href="#" class="btn btn--without-border active">Start</a></li>
+            <li><a href="/home" class="btn btn--without-border active">Start</a></li>
             <li><a href="#" class="btn btn--without-border">O co chodzi?</a></li>
             <li><a href="<c:url value="/home/about"/>" class="btn btn--without-border">O nas</a></li>
             <li><a href="#" class="btn btn--without-border">Fundacje i organizacje</a></li>

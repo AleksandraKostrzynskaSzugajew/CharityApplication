@@ -78,13 +78,20 @@ public class HomePageController {
 
     @PostMapping("/register")
     public String registered(@ModelAttribute User user) {
-        user.setRole(roleService.findByName("ROLE_USER"));
-        String token = registrationService.generateUniqueToken();
-        user.setUniqueToken(token);
-        userService.save(user);
-        userService.sendActivationEmail(user);
 
-        return "home";
+        System.out.println("================================================================================");
+        System.out.println(userService.findByEmail(user.getEmail()));
+        if (userService.findByEmail(user.getEmail()) == -1) {
+            user.setRole(roleService.findByName("ROLE_USER"));
+            String token = registrationService.generateUniqueToken();
+            user.setUniqueToken(token);
+            userService.save(user);
+            userService.sendActivationEmail(user);
+
+            return "after-registration";
+        } else {
+            return "user-in-db";
+        }
     }
 
     @GetMapping("/activate")

@@ -11,16 +11,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
-    <link rel="stylesheet" href="<c:url value="/css/styleAdmin.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/css/styleOla.css"/>"/>
 </head>
 <body>
 <%@ include file="../header.jsp" %>
 
-<div>Podaj adres email na ktory wyslemy link do resetowania hasla</div>
+<h2>Zresetuj swoje hasło</h2>
+
+
+<p>Podaj adres email wykorzystany przy rejestracji </p>
 
 <form:form method="post" action="/home/resetpass">
-    Email: <input type="email">
-    <input type="submit" value="Wyslij">
+    <div class="form-group">
+        Email: <input type="email" name="email" id="email">
+    </div>
+    <div class="form-group form-group--buttons">
+        <button class="btn" type="submit">Wyślij email do resetowania hasła</button>
+    </div>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form:form>
 

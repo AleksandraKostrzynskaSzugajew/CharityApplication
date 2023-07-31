@@ -9,14 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
-
     <link rel="stylesheet" href="<c:url value="/css/style.css"/>"/>
-
-<%--    probowane tez /home/alekosszu/Downloads/portfolioLabCharity/src/main/resources/static/css/style.css--%>
-<%--    resources/static/css/style.css--%>
-<%--    /static/css/style.css--%>
-<%--    static/css/style.css--%>
-
 </head>
 <body>
 
@@ -68,7 +61,10 @@
         </div>
     </div>
 
-    <a href="#" class="btn btn--large">Załóż konto</a>
+    <a href="/home/register" class="btn btn--large">Załóż konto</a>
+    <br>
+    <a href="/home/donate" class="btn btn--large">Oddaj bez rejestracji</a>
+
 </section>
 
 <section class="about-us">

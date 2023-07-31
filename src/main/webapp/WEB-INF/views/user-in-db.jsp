@@ -13,7 +13,7 @@
 
 
 <body>
-<%@ include file="../header.jsp" %>
+<%@ include file="header.jsp" %>
 
 <div class="slogan container container--90">
     <h2>
@@ -21,11 +21,15 @@
         <br>
         <br>
         <br>
-        <p>Twoje konto zostało aktywowane! </p>
+        Użytkownik o podanym adresie email już istnieje w naszej bazie danych.
         <br>
-        <div class="form-group form-group--buttons">
-            <a href="/home/login" class="btn btn--without-border">Zaloguj się</a>
-        </div>
+        <br>
+        Aby odzyskać dostęp do konta, wypróbuj opcje odzyskiwania hasła.
+        <br>
+        <br>
+        <br>
+        <br>
+        <a href="/home/resetpass" class="btn btn--large">Odzyskaj hasło</a>
         <br>
         <br>
         <br>
@@ -33,7 +37,7 @@
     </h2>
 </div>
 
-<%@ include file="../footer.jsp" %>
+<%@ include file="footer.jsp" %>
 
 <script src="<c:url value="/js/app.js"/>"></script>
 </body>

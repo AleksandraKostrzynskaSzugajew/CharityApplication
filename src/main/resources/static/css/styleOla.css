@@ -1,0 +1,122 @@
+/* Resetowanie marginesów i paddingów dla elementów */
+body, h1, h2, h3, h4, h5, h6, p, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Stylowanie całej strony */
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Stylowanie nagłówka h3 */
+h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center; /* Wyśrodkowanie nagłówka */
+}
+
+/* Stylowanie tabeli */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+/* Stylowanie nagłówków tabeli */
+th {
+  font-weight: 600;
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #333;
+}
+
+/* Stylowanie komórek tabeli */
+td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/* Stylowanie linków */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+/* Stylowanie linków przy najechaniu */
+a:hover {
+  text-decoration: underline;
+}
+
+/* Stylowanie przycisków */
+.button,
+.add-link,
+.home-link {
+  display: inline-block;
+  padding: 8px 16px; /* Mniejszy padding */
+  color: #362f2f; /* Czarny kolor tekstu */
+  border: 1px solid #443f3f; /* Cienka obramówka czarna */
+  border-radius: 0; /* Wyłączamy zaokrąglenie krawędzi */
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  margin: 10px auto; /* Wyśrodkowanie przycisków */
+}
+
+/* Stylowanie przycisków przy najechaniu */
+.button:hover,
+.add-link:hover,
+.home-link:hover {
+  border-color: #d4af37; /* Ciemnożółta obramówka po najechaniu */
+}
+
+
+
+
+
+/* Stylowanie przycisków w stopce */
+.footer-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  float: right; /* Przesunięcie przycisku w prawo */
+}
+
+/* Stylowanie przycisków przy najechaniu w stopce */
+.footer-button:hover {
+  background-color: #0056b3;
+}
+
+/* Stylowanie formularza */
+.custom-form {
+  max-width: 400px; /* Maksymalna szerokość formularza */
+  margin: 0 auto; /* Wysrodkowanie formularza */
+}
+
+/* Stylowanie przycisku w formularzu */
+.form-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #eaecee;
+  color: #504d4d;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+/* Stylowanie przycisku przy najechaniu w formularzu */
+.form-btn:hover {
+  background-color: #9ca3a8;
+}

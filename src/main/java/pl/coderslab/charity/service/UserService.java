@@ -31,7 +31,7 @@ public class UserService {
     private final JavaMailSender javaMailSender;
     private final RegistrationService registrationService;
 
-    private final Logger logger = LoggerFactory.getLogger(UserService.class);
+//    private final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleService roleService, EmailServiceImpl emailService, JavaMailSender javaMailSender, RegistrationService registrationService) {
         this.userRepository = userRepository;
@@ -101,7 +101,7 @@ public class UserService {
                         "Witamy w CharityApp! Jesteśmy bardzo zadowoleni, że do nas dołączyłeś. Zacznij oddawać " +
                         "rzeczy już dzisiaj!\n\n" +
                         "Aby aktywować swoje konto, kliknij proszę w poniższy link aktywacyjny:\n" +
-                        "<a href=\"%s\">Aktywuj konto</a>\n\n" + // Wstawiamy link jako hiperłącze
+                        "\"%s\">Aktywuj konto</a>\n\n" + // Wstawiamy link jako hiperłącze
                         "Dziękujemy za zaufanie i dołączenie do naszej społeczności. Jeśli masz jakiekolwiek pytania, nie wahaj się skontaktować z nami.\n\n" +
                         "\n" +
                         "Zespół CharityApp",
@@ -151,11 +151,11 @@ public class UserService {
             edit(user);
             sendResetPassEmail(user);
             // Logowanie informacji o wysłaniu emaila resetującego hasło.
-            logger.info("Wysłano email resetujący hasło dla użytkownika o adresie email: {}", email);
+//            logger.info("Wysłano email resetujący hasło dla użytkownika o adresie email: {}", email);
             return "user/resetMailSent";
         } else {
             // Logowanie informacji o nieznalezieniu użytkownika o podanym emailu.
-            logger.warn("Nie znaleziono użytkownika o adresie email: {}", email);
+//            logger.warn("Nie znaleziono użytkownika o adresie email: {}", email);
             return "user/noSuchUser";
         }
     }
@@ -169,7 +169,7 @@ public class UserService {
         String subject = "Tu w CharityApp! Reset hasla ";
         String to = user.getEmail();
         String body = String.format(
-                "Drogi %s,\n\n" +
+                "Witaj %s,\n\n" +
                         "Aby zresetowac swoje haslo kliknij w pozniszy link " +
 
                         "<a href=\"%s\">Resetuj haslo</a>\n\n" +

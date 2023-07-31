@@ -11,15 +11,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
-    <link rel="stylesheet" href="<c:url value="/css/styleAdmin.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/css/styleOla.css"/>"/>
 </head>
 <body>
-
-<div class="image-container">
-    <img src="<c:url value="/images/adminlogo.jpg"/>" alt="logo for admin"/>
-</div>
-
+<%@include file="../header.jsp"%>
+<br>
 <h2 class="center-text">Edytuj Instytucję</h2>
+<br>
+<br>
 <form:form method="post"  modelAttribute="institution" class="custom-form">
 
     <div class="form-group">
@@ -36,6 +35,9 @@
     <input type="submit" value="Aktualizuj" class="form-btn">
 
 </form:form>
-
+<br>
+<br>
+<br>
+<%@include file="../footer.jsp"%>
 </body>
 </html>

@@ -11,15 +11,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
   <title>Document</title>
-  <link rel="stylesheet" href="<c:url value="/css/styleAdmin.css"/>"/>
+  <link rel="stylesheet" href="<c:url value="/css/styleOla.css"/>"/>
 </head>
 <body>
-<div class="image-container">
-  <img src="<c:url value="/images/adminlogo.jpg"/>" alt="logo for admin"/>
-</div>
+<%@include file="../header.jsp"%>
+<br>
+<br>
 <h3 class="center-text">Dodaj nowa instytucje</h3>
 
-<form:form method="post"  modelAttribute="institution" class="custom-form">
+<form:form method="post" modelAttribute="institution" class="custom-form center-text">
 
   <div class="form-group">
     <label>Nazwa:</label>
@@ -33,6 +33,10 @@
 
   <input type="submit" value="Dodaj nowa instytucje" class="form-btn">
 </form:form>
+<br>
+<br>
+<br>
+<%@include file="../footer.jsp"%>
 
 </body>
 </html>

@@ -10,9 +10,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
   <title>Document</title>
-  <link rel="stylesheet" href="<c:url value="/css/styleAdmin.css"/>"/>
+  <link rel="stylesheet" href="<c:url value="/css/styleOla.css"/>"/>
 </head>
 <body>
+<%@include file="../header.jsp"%>
+<br>
+<br>
+<br>
 <h3> Wszyscy administratorzy </h3>
 <br>
 <br>
@@ -44,7 +48,9 @@
 <br>
 <td><a href="<c:url value='/admin/home' />" class="home-link">Powrót na stronę główną</a></td>
 
-<div class="image-container"><img src="<c:url value="/images/adminlogo.jpg"/>" alt="logo for admin"/></div>
-
+<br>
+<br>
+<br>
+<%@include file="../footer.jsp"%>
 </body>
 </html>

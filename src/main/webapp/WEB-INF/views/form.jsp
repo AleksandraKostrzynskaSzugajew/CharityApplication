@@ -79,13 +79,13 @@
 
         <!-- STEP 3 -->
         <div data-step="3">
-            <h3>Wybierz organizacje, której chcesz pomóc:</h3>
+            <h3>Wybierz organizację, której chcesz pomóc:</h3>
 
             <c:forEach var="institution" items="${institutions}">
-                <div class="form-group form-group--checkbox">
+                <div class="form-group form-group--radio">
                     <label>
-                        <input type="checkbox" name="institutions" id="institutions" value="${institution.id}"/>
-                        <span class="checkbox"></span>
+                        <input type="radio" name="institution" value="${institution.id}"/>
+                        <span class="radio"></span>
                         <span class="description">${institution.name}</span>
                     </label>
                 </div>
@@ -96,6 +96,7 @@
                 <button type="button" class="btn next-step">Dalej</button>
             </div>
         </div>
+
 
         <!-- STEP 4 -->
         <div data-step="4">

@@ -3,7 +3,6 @@ package pl.coderslab.charity.Controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pl.coderslab.charity.entity.Institution;
 import pl.coderslab.charity.entity.Role;
 import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.service.AdminService;
@@ -18,7 +17,6 @@ public class AdminController {
 
     private final UserService userService;
     private final AdminService adminService;
-
     private final RoleService roleService;
 
 
@@ -30,16 +28,14 @@ public class AdminController {
 
 
     @ModelAttribute("admins")
-    public List<User> admins(Model model) {
-
+    public List<User> admins() {
         return adminService.findAllAdmins(1L);
     }
 
     @ModelAttribute("loggedInAdminId")
-    public String loggedInAdminId(Model model) {
+    public String loggedInAdminId() {
         Long loggedInAdminId = userService.getCurrentUser();
         return loggedInAdminId.toString();
-
     }
 
     @GetMapping("/findall")
@@ -56,19 +52,11 @@ public class AdminController {
     @PostMapping("/save")
     public String saved(@ModelAttribute User user) {
         Role role = roleService.findById(1L);
-        System.out.println("=====================================================");
-        System.out.println(role);
-
         userService.save(user);
         user.setRole(role);
         userService.edit(user);
         return "redirect:findall";
     }
-
-//    @GetMapping("/findall")
-//    public String findAllUsers() {
-//        return "adminView/findAll";
-//    }
 
     @GetMapping("/edit")
     public String edit(Model model, @RequestParam Long id) {

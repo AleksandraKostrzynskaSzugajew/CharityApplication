@@ -13,7 +13,7 @@
 
 
 <body>
-<%@ include file="../header.jsp" %>
+<%@ include file="header.jsp" %>
 
 <div class="slogan container container--90">
     <h2>
@@ -21,11 +21,8 @@
         <br>
         <br>
         <br>
-        <p>Twoje konto zostało aktywowane! </p>
+        Dziękujemy za dołączenie do naszej społeczności! Proszę, wejdź na podany maila i aktywuj swoje konto!
         <br>
-        <div class="form-group form-group--buttons">
-            <a href="/home/login" class="btn btn--without-border">Zaloguj się</a>
-        </div>
         <br>
         <br>
         <br>
@@ -33,7 +30,7 @@
     </h2>
 </div>
 
-<%@ include file="../footer.jsp" %>
+<%@ include file="footer.jsp" %>
 
 <script src="<c:url value="/js/app.js"/>"></script>
 </body>
