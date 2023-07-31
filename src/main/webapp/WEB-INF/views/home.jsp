@@ -61,11 +61,21 @@
         </div>
     </div>
 
-    <a href="/home/register" class="btn btn--large">Załóż konto</a>
-    <br>
-    <a href="/home/donate" class="btn btn--large">Oddaj bez rejestracji</a>
+    <c:if test="${pageContext.request.userPrincipal == null}">
+        <!-- Użytkownik nie jest zalogowany, pokaż przyciski -->
+        <a href="/home/register" class="btn btn--large">Załóż konto</a>
+        <br>
+        <a href="/home/donate" class="btn btn--large">Oddaj bez rejestracji</a>
+    </c:if>
+
+    <c:if test="${pageContext.request.userPrincipal != null and pageContext.request.isUserInRole('ROLE_USER')}">
+        <!-- Użytkownik jest zalogowany i ma rolę "ROLE_USER", pokaż dodatkowy przycisk -->
+        <a href="/home/donate" class="btn btn--large">Oddaj</a>
+    </c:if>
 
 </section>
+
+
 
 <section class="about-us">
     <div class="about-us--text">

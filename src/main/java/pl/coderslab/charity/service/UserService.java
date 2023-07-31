@@ -97,11 +97,10 @@ public class UserService {
         String subject = "Witaj w CharityApp! Aktywuj swoje konto juz teraz!";
         String to = user.getEmail();
         String body = String.format(
-                "Drogi %s,\n\n" +
-                        "Witamy w CharityApp! Jesteśmy bardzo zadowoleni, że do nas dołączyłeś. Zacznij oddawać " +
+                        "%s , witamy w CharityApp! Jesteśmy bardzo zadowoleni, że do nas dołączyłeś. Zacznij oddawać " +
                         "rzeczy już dzisiaj!\n\n" +
                         "Aby aktywować swoje konto, kliknij proszę w poniższy link aktywacyjny:\n" +
-                        "\"%s\">Aktywuj konto</a>\n\n" + // Wstawiamy link jako hiperłącze
+                        "%s"+"\n"+
                         "Dziękujemy za zaufanie i dołączenie do naszej społeczności. Jeśli masz jakiekolwiek pytania, nie wahaj się skontaktować z nami.\n\n" +
                         "\n" +
                         "Zespół CharityApp",
@@ -172,7 +171,7 @@ public class UserService {
                 "Witaj %s,\n\n" +
                         "Aby zresetowac swoje haslo kliknij w pozniszy link " +
 
-                        "<a href=\"%s\">Resetuj haslo</a>\n\n" +
+                        "%s\n" +
 
                         "\n" +
                         "Zespół CharityApp",
