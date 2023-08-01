@@ -100,8 +100,8 @@ public class UserController {
     }
 
     @GetMapping("/mydonations")
-    public String listMyDonations(Model model, @RequestParam(value = "sort", required = false) String sort, @RequestParam Long id) {
-        List<Donation> myDonations = donationService.findAllDonations(id);
+    public String listMyDonations(Model model, @RequestParam(value = "sort", required = false) String sort) {
+        List<Donation> myDonations = donationService.findAllDonations(userService.getCurrentUser());
 
         if (sort != null) {
             switch (sort) {

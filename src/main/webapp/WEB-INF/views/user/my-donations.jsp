@@ -10,6 +10,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="<c:url value="/css/style.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/css/styleOla.css"/>"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 
@@ -20,55 +21,79 @@
 <h2>Moje donacje</h2>
 <br>
 <br>
-<form:form method="get" action="/mydonations">
-    <input type="submit" name="sort" value="Sortuj według statusu odebrania" class="btn--small">
-    <input type="submit" name="sort" value="Sortuj według daty odebrania" class="btn--small">
-    <input type="submit" name="sort" value="Sortuj według daty utworzenia wpisu" class="btn--small">
-</form:form>
+<button class="btn--small" onclick="updateTable('Sortuj według statusu odebrania')">Sortuj według statusu odebrania</button>
+<button class="btn--small" onclick="updateTable('Sortuj według daty odebrania')">Sortuj według daty odebrania</button>
+<button class="btn--small" onclick="updateTable('Sortuj według daty utworzenia wpisu')">Sortuj według daty utworzenia wpisu</button>
 <br>
 <br>
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Ilość</th>
-        <th>Kategorie</th>
-        <th>Instytucja</th>
-        <th>Adres</th>
-        <th>Data odbioru</th>
-        <th>Godzina odbioru</th>
-        <th>Komentarz</th>
-        <th>Telefon</th>
-        <th>Data deklaracji</th>
-        <th>Status odbioru</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach items="${myDonations}" var="donation">
+<br>
+<br>
+<div id="donationsTableContainer">
+    <table id="donationsTable">
+        <thead>
         <tr>
-            <td>${donation.id}</td>
-            <td>${donation.quantity}</td>
-            <td>
-                <c:forEach items="${donation.categories}" var="category">
-                    ${category.name}<br>
-                </c:forEach>
-            </td>
-            <td>${donation.institution.name}</td>
-            <td>${donation.street}, ${donation.city}, ${donation.zipCode}</td>
-            <td>${donation.pickUpDate}</td>
-            <td>${donation.pickUpTime}</td>
-            <td>${donation.pickUpComment}</td>
-            <td>${donation.phone}</td>
-            <td>${donation.donationDeclaredOn}</td>
-            <td>${donation.pickedUp ? 'Odebrano' : 'Oczekuje na odbiór'}</td>
+            <th>ID</th>
+            <th>Ilość</th>
+            <th>Kategorie</th>
+            <th>Instytucja</th>
+            <th>Adres</th>
+            <th>Data odbioru</th>
+            <th>Godzina odbioru</th>
+            <th>Komentarz</th>
+            <th>Telefon</th>
+            <th>Data deklaracji</th>
+            <th>Status odbioru</th>
         </tr>
-    </c:forEach>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        <c:forEach items="${myDonations}" var="donation">
+            <tr>
+                <td>${donation.id}</td>
+                <td>${donation.quantity}</td>
+                <td>
+                    <c:forEach items="${donation.categories}" var="category">
+                        ${category.name}<br>
+                    </c:forEach>
+                </td>
+                <td>${donation.institution.name}</td>
+                <td>${donation.street}, ${donation.city}, ${donation.zipCode}</td>
+                <td>${donation.pickUpDate}</td>
+                <td>${donation.pickUpTime}</td>
+                <td>${donation.pickUpComment}</td>
+                <td>${donation.phone}</td>
+                <td>${donation.donationDeclaredOn}</td>
+                <td>${donation.pickedUp ? 'Odebrano' : 'Oczekuje na odbiór'}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
+<br>
+<br>
 <br>
 <br>
 <br>
 <br>
 <%@ include file="../footer.jsp" %>
+<script>
+    function updateTable(sortOption) {
+        $.ajax({
+            type: 'GET',
+            url: '/user/mydonations',
+            data: {sort: sortOption},
+            success: function(response) {
+
+                // Usuń obecny kontent z tabeli
+                $('#donationsTableContainer').empty();
+
+                // Aktualizuj zawartość tabeli po odebraniu odpowiedzi od serwera
+                $('#donationsTableContainer').html(response);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
+</script>
 </body>
 </html>
