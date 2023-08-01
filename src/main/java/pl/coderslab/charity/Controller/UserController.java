@@ -1,5 +1,6 @@
 package pl.coderslab.charity.Controller;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -9,10 +10,9 @@ import pl.coderslab.charity.service.RoleService;
 import pl.coderslab.charity.service.UserService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
-@RequestMapping("/admin/user")
+@RequestMapping("/user")
 public class UserController {
 
 
@@ -20,10 +20,13 @@ public class UserController {
     private final AdminService adminService;
     private final RoleService roleService;
 
-    public UserController(UserService userService, AdminService adminService, RoleService roleService) {
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public UserController(UserService userService, AdminService adminService, RoleService roleService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userService = userService;
         this.adminService = adminService;
         this.roleService = roleService;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @ModelAttribute("users")
@@ -38,17 +41,37 @@ public class UserController {
     }
 
 
-    @GetMapping("edit")
+    @GetMapping("/edit")
     public String edit(Model model, @RequestParam Long id) {
         User user = userService.findById(id);
         model.addAttribute("user", user);
         return "user/edit";
     }
 
-    @PostMapping("edit")
+    @PostMapping("/edit")
     public String edited(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userService.edit(user);
         return "user/findAll";
+    }
+
+    @GetMapping("/editbu")
+    public String editByUser(Model model) {
+        Long userId = userService.getCurrentUser();
+        User user = userService.findById(userId);
+        model.addAttribute("user", user);
+        return "user/editByUser";
+    }
+
+    @PostMapping("/editbu")
+    public String editedByUser(@RequestParam Long id,
+                               @RequestParam String email,
+                               @RequestParam String name) {
+        User user = userService.findById(id);
+        user.setEmail(email);
+        user.setName(name);
+        userService.edit(user);
+        return "user/data-actualized";
     }
 
 

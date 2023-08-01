@@ -1,5 +1,6 @@
 package pl.coderslab.charity.Controller;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +26,9 @@ public class HomePageController {
     private final RegistrationService registrationService;
 
     private final EmailServiceImpl emailServiceImpl;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public HomePageController(InstitutionService institutionService, DonationService donationService, UserService userService, RoleService roleService, AdminService adminService, RegistrationService registrationService, EmailServiceImpl emailServiceImpl) {
+    public HomePageController(InstitutionService institutionService, DonationService donationService, UserService userService, RoleService roleService, AdminService adminService, RegistrationService registrationService, EmailServiceImpl emailServiceImpl, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.institutionService = institutionService;
         this.donationService = donationService;
         this.userService = userService;
@@ -34,6 +36,7 @@ public class HomePageController {
         this.adminService = adminService;
         this.registrationService = registrationService;
         this.emailServiceImpl = emailServiceImpl;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @GetMapping
@@ -145,10 +148,36 @@ public class HomePageController {
         String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
 
         if (password1.equals(password2) && password1.matches(passwordRegex)) {
-            user.setPassword(password1);
+            user.setPassword(bCryptPasswordEncoder.encode(password1));
             userService.edit(user);
         }
         return "login";
+    }
+
+
+    @GetMapping("/resetpassbu")
+    public String showResetFormByUser(Model model) {
+        User user = userService.findById(userService.getCurrentUser());
+        model.addAttribute("user", user);
+        return "user/reset-by-user";
+    }
+
+
+    @PostMapping("/resetpassbu")
+    public String resetPassByUser(@RequestParam String password1,
+                                  @RequestParam String password2,
+                                  @RequestParam Long userId) {
+
+        User user = userService.findById(userId);
+
+        String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+
+
+        if (password1.equals(password2) && password1.matches(passwordRegex)) {
+            user.setPassword(bCryptPasswordEncoder.encode(password1));
+            userService.edit(user);
+        }
+        return "pass-changed";
     }
 
 

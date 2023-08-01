@@ -14,19 +14,21 @@
     <link rel="stylesheet" href="<c:url value="/css/styleOla.css"/>"/>
 </head>
 <body>
-<div class="image-container">
+<%@include file="../header.jsp" %>
+
+<div class="slogan container container--90">
+    <br>
+    <br>
+    <br>
+    <br>
+    <p>Twoje dane zostały pomyślnie zaktualizowane! </p>
+    <br>
+    <br>
+    <br>
+    <br>
 </div>
-<form:form method="post" modelAttribute="user">
+<%@include file="../footer.jsp" %>
 
-    <div>Email : <form:input path="email"/></div>
-    <div>Rola : <form:input path="role"/></div>
-    <div>Komentarz : <form:input path="comment"/></div>
-    <div>Imie : <form:input path="name"/></div>
-    <form:hidden path="id"/>
-    <input type="submit" value="Aktualizuj">
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-
-</form:form>
 
 </body>
 </html>

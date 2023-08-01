@@ -18,13 +18,14 @@
 <body>
 <%@ include file="../header.jsp" %>
 
-<form:form method="post" id="passwordForm">
+<form:form method="post" id="passwordForm" action="/resetpassbu">
     Haslo: <input type="password" name="password1" id="password1">
     Powtorz haslo: <input type="password" name="password2" id="password2">
-    <input type="submit" value="Zmien haslo">
+    <input type="submit" value="Zmien hasło">
+    <input type="hidden" name="userId" value="${user.id}"/>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    <form:hidden path="id"/>
 </form:form>
+
 <%@ include file="../footer.jsp" %>
 
 

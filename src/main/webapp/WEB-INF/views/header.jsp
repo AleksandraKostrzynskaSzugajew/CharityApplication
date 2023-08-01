@@ -11,7 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
-    <link rel="stylesheet" href="<c:url value="/css/style.css"/>"/> <%-- Importowanie pliku CSS --%>
+    <link rel="stylesheet" href="<c:url value="/css/style.css"/>"/>
+    <%-- Importowanie pliku CSS --%>
 </head>
 <body>
 
@@ -20,13 +21,18 @@
         <ul class="nav--actions">
             <c:if test="${pageContext.request.userPrincipal != null}">
                 <%-- Jeśli użytkownik jest zalogowany, wyświetl "Witaj [imię]" i przycisk "Wyloguj" --%>
-                <li><span class="btn btn--small btn--without-border">Witaj ${pageContext.request.userPrincipal.name}</span></li>
+                <li><span
+                        class="btn btn--small btn--without-border">Witaj ${pageContext.request.userPrincipal.name}</span>
+                </li>
                 <li>
                     <form action="/logout" method="post">
-                        <input type="submit" value="Wyloguj" class="btn btn--small btn--without-border" />
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                        <input type="submit" value="Wyloguj" class="btn btn--small btn--without-border"/>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </form>
                 </li>
+            </c:if>
+            <c:if test="${pageContext.request.userPrincipal != null and pageContext.request.isUserInRole('ROLE_USER')}">
+                <li><a href="/user/editbu" class="btn btn--small btn--without-border">Edytuj moje dane</a></li>
             </c:if>
             <c:if test="${pageContext.request.userPrincipal == null}">
                 <%-- Jeśli użytkownik nie jest zalogowany, wyświetl przycisk "Zaloguj się" oraz "Załóż konto" --%>
@@ -35,9 +41,12 @@
             </c:if>
             <c:if test="${pageContext.request.userPrincipal != null && pageContext.request.isUserInRole('ADMIN')}">
                 <%-- Jeśli użytkownik jest zalogowany jako admin, wyświetl te przyciski --%>
-                <li><a href="/admin/user/findall" class="btn btn--small btn--without-border">Zarządzaj użytkownikami</a></li>
-                <li><a href="/admin/inst/findall" class="btn btn--small btn--without-border">Zarządzaj fundacjami</a></li>
-                <li><a href="/admin/admin/findall" class="btn btn--small btn--without-border">Zarządzaj administratorami</a></li>
+                <li><a href="/admin/user/findall" class="btn btn--small btn--without-border">Zarządzaj użytkownikami</a>
+                </li>
+                <li><a href="/admin/inst/findall" class="btn btn--small btn--without-border">Zarządzaj fundacjami</a>
+                </li>
+                <li><a href="/admin/admin/findall" class="btn btn--small btn--without-border">Zarządzaj
+                    administratorami</a></li>
             </c:if>
         </ul>
 

@@ -14,19 +14,34 @@
     <link rel="stylesheet" href="<c:url value="/css/styleOla.css"/>"/>
 </head>
 <body>
-<div class="image-container">
-</div>
+<%@include file="../header.jsp" %>
+<br>
+<br>
+<h2>Edytuj dane</h2>
+<br>
+<br>
+<br>
+
 <form:form method="post" modelAttribute="user">
-
-    <div>Email : <form:input path="email"/></div>
-    <div>Rola : <form:input path="role"/></div>
-    <div>Komentarz : <form:input path="comment"/></div>
-    <div>Imie : <form:input path="name"/></div>
+    <div class="form-group">
+        <form:input type="email" path="email" placeholder="Zmień email" value="${user.email}"/>
+    </div>
+    <div class="form-group">
+        <form:input type="text" path="name" placeholder="Zmień imię" value="${user.name}"/>
+    </div>
+    <div class="form-group">
+        <a href="/home/resetpassbu" class="btn btn--small btn--without-border">Zmień hasło</a>
+    </div>
     <form:hidden path="id"/>
-    <input type="submit" value="Aktualizuj">
+    <input type="submit" value="Aktualizuj" class="btn">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-
 </form:form>
+
+<br>
+<br>
+<br>
+<%@include file="../footer.jsp" %>
+
 
 </body>
 </html>
