@@ -53,8 +53,6 @@
 <br>
 <br>
 <br>
-<%--<td><a href="<c:url value='/admin/user/save' />" class="add-link">Dodaj nowego użytkownika</a></td>--%>
-<br>
 <br>
 <br>
 <br>

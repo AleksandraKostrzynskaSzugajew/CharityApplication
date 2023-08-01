@@ -13,7 +13,7 @@
 
 
 <body>
-<%@ include file="../header.jsp" %>
+<%@ include file="header.jsp" %>
 <div class="slogan container container--90">
     <h2>
         <br>
@@ -29,6 +29,6 @@
     </h2>
 </div>
 
-<%@ include file="../footer.jsp" %>
+<%@ include file="footer.jsp" %>
 </body>
 </html>

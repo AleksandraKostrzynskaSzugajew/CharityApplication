@@ -4,11 +4,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.service.AdminService;
+import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.service.RoleService;
 import pl.coderslab.charity.service.UserService;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -19,13 +23,15 @@ public class UserController {
     private final UserService userService;
     private final AdminService adminService;
     private final RoleService roleService;
+    private final DonationService donationService;
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserController(UserService userService, AdminService adminService, RoleService roleService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UserController(UserService userService, AdminService adminService, RoleService roleService, DonationService donationService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userService = userService;
         this.adminService = adminService;
         this.roleService = roleService;
+        this.donationService = donationService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
@@ -91,6 +97,34 @@ public class UserController {
     public String unblock(@RequestParam long id) {
         userService.unblockUser(id);
         return "user/findAll";
+    }
+
+    @GetMapping("/mydonations")
+    public String listMyDonations(Model model, @RequestParam(value = "sort", required = false) String sort, @RequestParam Long id) {
+        List<Donation> myDonations = donationService.findAllDonations(id);
+
+        if (sort != null) {
+            switch (sort) {
+                case "Sortuj według statusu odebrania":
+                    // Sortowanie według statusu odebrania
+                    Collections.sort(myDonations, Comparator.comparing(Donation::isPickedUp));
+                    break;
+                case "Sortuj według daty odebrania":
+                    // Sortowanie według daty odebrania
+                    Collections.sort(myDonations, Comparator.comparing(Donation::getPickUpDate));
+                    break;
+                case "Sortuj według daty utworzenia wpisu":
+                    // Sortowanie według daty utworzenia wpisu
+                    Collections.sort(myDonations, Comparator.comparing(Donation::getDonationDeclaredOn));
+                    break;
+                default:
+                    // Domyślne sortowanie (np. po ID)
+                    Collections.sort(myDonations, Comparator.comparing(Donation::getId));
+            }
+        }
+
+        model.addAttribute("myDonations", myDonations);
+        return "user/my-donations";
     }
 
 }

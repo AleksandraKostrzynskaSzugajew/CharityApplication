@@ -5,6 +5,8 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.charity.entity.Donation;
 import pl.coderslab.charity.repository.DonationRepository;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class DonationService {
@@ -37,5 +39,9 @@ public class DonationService {
             donationRepository.save(donation);
         }
 
+    }
+
+    public List<Donation> findAllDonations(Long id) {
+        return donationRepository.findAllByUserId(id);
     }
 }

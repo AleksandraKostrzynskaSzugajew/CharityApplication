@@ -42,5 +42,7 @@ public class Donation {
     private String phone;
 
     private Long userId;
+    private LocalDate donationDeclaredOn;
+    private boolean isPickedUp;
 
 }

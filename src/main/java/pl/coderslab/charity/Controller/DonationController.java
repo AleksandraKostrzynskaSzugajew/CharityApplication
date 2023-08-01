@@ -14,6 +14,8 @@ import pl.coderslab.charity.service.DonationService;
 import pl.coderslab.charity.service.InstitutionService;
 import pl.coderslab.charity.service.UserService;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -48,6 +50,8 @@ public class DonationController {
 
     @PostMapping("/donated")
     public String processDonationForm(@ModelAttribute("donation") Donation donation) {
+        donation.setDonationDeclaredOn(LocalDate.now());
+        donation.setPickedUp(false);
         donationService.save(donation);
 
         return "form-confirmation";

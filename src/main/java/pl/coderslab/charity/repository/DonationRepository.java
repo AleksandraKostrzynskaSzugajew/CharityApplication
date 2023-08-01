@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.Query;
 import pl.coderslab.charity.entity.Category;
 import pl.coderslab.charity.entity.Donation;
 
+import java.util.List;
+
 public interface DonationRepository extends JpaRepository<Donation, Long> {
 
     @Query("SELECT SUM(d.quantity) FROM Donation d")
@@ -12,5 +14,7 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
 
     @Query("SELECT COUNT(d) FROM Donation d")
     Long countDonations();
+
+    List<Donation> findAllByUserId(Long userId);
 
 }
