@@ -15,15 +15,18 @@
 <body>
 <%@ include file="../header.jsp" %>
 <div class="slogan container container--90">
+    <h2>
         <br>
         <br>
         <br>
         <br>
-        <h2>Hasło zostało zmienione.</h2>
+        <p>Coś poszło nie tak. </p>
         <br>
         <br>
         <br>
         <br>
+        <br>
+    </h2>
 </div>
 
 <%@ include file="../footer.jsp" %>

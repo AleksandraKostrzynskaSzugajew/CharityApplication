@@ -17,17 +17,27 @@
 </head>
 <body>
 <%@ include file="../header.jsp" %>
-
-<form:form method="post" id="passwordForm" action="/resetpassbu">
-    Haslo: <input type="password" name="password1" id="password1">
-    Powtorz haslo: <input type="password" name="password2" id="password2">
-    <input type="submit" value="Zmien hasło">
+<br>
+<br>
+<br>
+<h2>Utwórz nowe hasło</h2>
+<br>
+<br>
+<form:form method="post" id="passwordForm" action="/home/resetpassbu">
+    <div class="form-group">
+        <input type="text" name="password1" placeholder="Hasło"/>
+    </div>
+    <div class="form-group">
+        <input type="text" name="password2" placeholder="Powtórz hasło"/>
+    </div>
+    <input type="submit" value="Zmień hasło" class="btn">
     <input type="hidden" name="userId" value="${user.id}"/>
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form:form>
-
+<br>
+<br>
+<br>
 <%@ include file="../footer.jsp" %>
-
 
 
 <script>
@@ -56,7 +66,7 @@
         return true;
     }
 
-    document.getElementById('passwordForm').addEventListener('submit', function(event) {
+    document.getElementById('passwordForm').addEventListener('submit', function (event) {
         if (!validatePassword()) {
             event.preventDefault();
         }

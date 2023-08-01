@@ -176,8 +176,10 @@ public class HomePageController {
         if (password1.equals(password2) && password1.matches(passwordRegex)) {
             user.setPassword(bCryptPasswordEncoder.encode(password1));
             userService.edit(user);
+            return "user/pass-changed";
         }
-        return "pass-changed";
+        return "error";
+
     }
 
 
