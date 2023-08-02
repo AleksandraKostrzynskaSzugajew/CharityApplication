@@ -182,5 +182,11 @@ public class HomePageController {
 
     }
 
+    @PostMapping("/contact")
+    public void registerContact(){
+
+    }
+
+
 
 }

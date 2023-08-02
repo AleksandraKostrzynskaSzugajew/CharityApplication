@@ -120,3 +120,7 @@ a:hover {
 .form-btn:hover {
   background-color: #9ca3a8;
 }
+
+.custom-input::placeholder {
+  color: gray;
+}

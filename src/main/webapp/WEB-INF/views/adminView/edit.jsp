@@ -12,30 +12,34 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Document</title>
     <link rel="stylesheet" href="<c:url value="/css/styleOla.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/css/style.css"/>"/>
 </head>
 <body>
 
-<%@include file="../header.jsp"%>
-<br>
-<h2>Edytuj administratora</h2>
-<br>
-<form:form method="post" action="/admin/admin/edit" modelAttribute="adminToEdit" class="custom-form">
-    <div>Email  : <form:input path="email" class="custom-input"/></div>
-    <br>
-    <br>
-    <div>Rola : <form:input path="role" class="custom-input"/></div>
-    <br>
-    <br>
-    <div>Komentarz : <form:input path="comment" class="custom-input"/></div>
-    <form:hidden path="id"/>
-    <br>
-    <br>
-    <input type="submit" value="Aktualizuj" class="custom-button">
-</form:form>
-<br>
-<br>
-<br>
-<%@include file="../footer.jsp"%>
+<%@include file="../header.jsp" %>
+
+<section class="login-page">
+
+    <h2>Edytuj administratora</h2>
+    <form:form method="post" action="/admin/admin/edit" modelAttribute="adminToEdit" class="custom-form">
+        <div class="form-group">
+            <form:input path="email" class="custom-input" placeholder="Email"/>
+        </div>
+        <div class="form-group">
+            <form:input path="role" class="custom-input" placeholder="Role"/>
+        </div>
+        <div class="form-group">
+            <form:input path="comment" class="custom-input" placeholder="Komentarz"/>
+        </div>
+        <form:hidden path="id"/>
+        <br>
+        <br>
+
+        <input type="submit" value="Aktualizuj" class="btn btn--without-border">
+    </form:form>
+</section>
+
+<%@include file="../footer.jsp" %>
 
 </body>
 </html>

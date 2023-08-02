@@ -3,9 +3,17 @@ package pl.coderslab.charity.email;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import pl.coderslab.charity.entity.Category;
+import pl.coderslab.charity.entity.Donation;
+import pl.coderslab.charity.entity.User;
+import pl.coderslab.charity.service.UserService;
+
+import java.util.stream.Collectors;
 
 @Service
 public class EmailServiceImpl implements EmailService {
@@ -14,6 +22,7 @@ public class EmailServiceImpl implements EmailService {
     private String fromEmail;
 
     private final JavaMailSender javaMailSender;
+
 
     public EmailServiceImpl(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
@@ -38,4 +47,5 @@ public class EmailServiceImpl implements EmailService {
         }
 
     }
+
 }

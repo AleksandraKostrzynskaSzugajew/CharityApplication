@@ -36,7 +36,7 @@ public class SesSecurityConfig {
                                 .requestMatchers("/css/**", "/js/**",
                                         "/home/**",
                                         "/images/**", "/home/login/**", "/home/donate/**", "/donated/**", "/home/activate", "/home/resetpass",
-                                        "/home/resetpassfm").permitAll()
+                                        "/home/resetpassfm", "/contact").permitAll()
 //                        .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
 //                        "/", "/home/**", "/home/register", "/home/logout", "/home/login", "/css/**", "/js/**", "/images/**"
 
