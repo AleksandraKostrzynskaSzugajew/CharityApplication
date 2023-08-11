@@ -14,9 +14,9 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:mysql://localhost:3306/charity_donation?serverTimezone=UTC
-    username: root
-    password: coderslab
+    url: jdbc:mysql://charity-donation.cjtzmi22a08e.eu-north-1.rds.amazonaws.com/charity_donation?serverTimezone=UTC
+    username: admin
+    password: 88dDB6!!
   mvc:
     view:
       prefix: /WEB-INF/views/
