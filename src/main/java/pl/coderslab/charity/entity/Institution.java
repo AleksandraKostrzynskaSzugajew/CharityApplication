@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 
 @Entity
@@ -23,4 +25,8 @@ public class Institution {
     private String name;
 
     private String description;
+
+    @NotEmpty(message = "Numer KRS nie może być pusty")
+    @Pattern(regexp = "\\d{10}", message = "Numer KRS musi składać się z 10 cyfr")
+    private String krs;
 }
