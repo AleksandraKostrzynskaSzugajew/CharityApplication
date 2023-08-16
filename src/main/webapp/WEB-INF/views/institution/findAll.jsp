@@ -24,6 +24,7 @@
     <th>Id</th>
     <th>Nazwa</th>
     <th>Opis</th>
+    <th>KRS</th>
     <th>Edytuj</th>
     <th>Usuń</th>
   </tr>
@@ -32,6 +33,7 @@
       <td>${institution.id}</td>
       <td>${institution.name}</td>
       <td>${institution.description}</td>
+      <td>${institution.krs}</td>
       <td><a href="<c:url value='/admin/inst/edit?id=${institution.id}'/>" class="btn edit-link">Edytuj</a></td>
       <td><a href="<c:url value='/admin/inst/remove?id=${institution.id}'/>" onclick="return confirm('Are you sure?')" class="btn delete-link">Usuń</a></td>
     </tr>

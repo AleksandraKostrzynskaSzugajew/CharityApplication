@@ -12,12 +12,22 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
   <title>Document</title>
   <link rel="stylesheet" href="<c:url value="/css/styleOla.css"/>"/>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 </head>
 <body>
 <%@include file="../header.jsp"%>
 <br>
 <br>
-<h3 class="center-text">Dodaj nowa instytucje</h3>
+<h2 class="center-text">Dodaj nowa instytucję</h2>
+<br>
+<br>
+<c:if test="${not empty errorMessage}">
+  <div class="custom-form center-text error-text">${errorMessage}</div>
+</c:if>
+<br>
+<br>
+
 
 <form:form method="post" modelAttribute="institution" class="custom-form center-text">
 
@@ -31,12 +41,19 @@
     <form:input path="description" class="form-input" />
   </div>
 
+  <div class="form-group">
+    <label>KRS:</label>
+    <form:input path="krs" class="form-input" />
+    <form:errors path="krs" cssClass="error-message" />
+  </div>
+
   <input type="submit" value="Dodaj nowa instytucje" class="form-btn">
 </form:form>
 <br>
 <br>
 <br>
 <%@include file="../footer.jsp"%>
+
 
 </body>
 </html>

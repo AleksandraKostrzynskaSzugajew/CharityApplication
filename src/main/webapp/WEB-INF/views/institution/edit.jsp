@@ -19,6 +19,11 @@
 <h2 class="center-text">Edytuj Instytucję</h2>
 <br>
 <br>
+<c:if test="${not empty errorMessage}">
+    <div class="custom-form center-text error-text">${errorMessage}</div>
+</c:if>
+<br>
+<br>
 <form:form method="post"  modelAttribute="institution" class="custom-form">
 
     <div class="form-group">
@@ -29,6 +34,11 @@
     <div class="form-group">
         <label>Cel:</label>
         <form:input path="description" class="form-input" />
+    </div>
+
+    <div class="form-group">
+        <label>KRS:</label>
+        <form:input path="krs" class="form-input" />
     </div>
 
     <form:hidden path="id"/>

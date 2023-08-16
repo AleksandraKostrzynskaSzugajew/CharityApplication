@@ -22,14 +22,41 @@ public class InstitutionService {
         return institutionRepository.findAll();
     }
 
-    public void save(Institution institution) {
-        institutionRepository.save(institution);
+    public boolean save(Institution institution) {
+        if (institutionRepository.findByKrs(institution.getKrs()) == null
+                && institutionRepository.findByName(institution.getName()) == null) {
+            institutionRepository.save(institution);
+            return true;
+        }
+        return false;
     }
 
-    public void edit(Institution institution) {
-        institutionRepository.save(institution
-        );
+    public boolean edit(Institution institution) {
+        Institution existingByKrs = institutionRepository.findByKrs(institution.getKrs());
+        Institution existingByName = institutionRepository.findByName(institution.getName());
+
+        // Sprawdź, czy instytucja o danym numerze KRS lub nazwie już istnieje
+        if ((existingByKrs == null || existingByKrs.getId().equals(institution.getId())) &&
+                (existingByName == null || existingByName.getId().equals(institution.getId()))) {
+
+            // Sprawdź, czy existingByKrs nie jest null przed wywołaniem equals
+            if (existingByKrs != null && existingByKrs.equals(institution)) {
+                return true;
+            }
+
+            // Sprawdź, czy existingByName nie jest null przed wywołaniem equals
+            if (existingByName != null && existingByName.equals(institution)) {
+                return true;
+            }
+
+            // Zaktualizuj instytucję, jeśli zmiany zostały wprowadzone
+            institutionRepository.save(institution);
+            return true;
+        }
+        return false;
     }
+
+
 
     public void deleteById(Long id) {
         Optional<Institution> institution = institutionRepository.findById(id);

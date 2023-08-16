@@ -124,3 +124,8 @@ a:hover {
 .custom-input::placeholder {
   color: gray;
 }
+
+.error-text {
+  font-weight: bold;
+  color: red;
+}
