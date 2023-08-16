@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.coderslab.charity.entity.Contact;
-import pl.coderslab.charity.entity.User;
 import pl.coderslab.charity.service.ContactService;
 import pl.coderslab.charity.service.UserService;
 

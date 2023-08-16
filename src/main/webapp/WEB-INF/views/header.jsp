@@ -33,7 +33,7 @@
             </c:if>
             <c:if test="${pageContext.request.userPrincipal != null and pageContext.request.isUserInRole('ROLE_USER')}">
                 <li><a href="/user/editbu" class="btn btn--small btn--without-border">Edytuj moje dane</a></li>
-                <li><a href="/user/mydonations" class="btn btn--small btn--without-border">Moje donacje</a></li>
+                <li><a href="/user/mydonations" class="btn btn--small btn--without-border">Moje darowizny</a></li>
             </c:if>
             <c:if test="${pageContext.request.userPrincipal == null}">
                 <%-- Jeśli użytkownik nie jest zalogowany, wyświetl przycisk "Zaloguj się" oraz "Załóż konto" --%>

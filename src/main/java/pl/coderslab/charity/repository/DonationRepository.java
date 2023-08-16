@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface DonationRepository extends JpaRepository<Donation, Long> {
 
-    @Query("SELECT SUM(d.quantity) FROM Donation d")
+    @Query("SELECT COALESCE(SUM(d.quantity), 0) FROM Donation d")
     Integer sumQuantity();
 
     @Query("SELECT COUNT(d) FROM Donation d")

@@ -18,7 +18,7 @@
 <%@ include file="../header.jsp" %>
 <br>
 <br>
-<h2>Moje donacje</h2>
+<h2>Moje darowizny</h2>
 <br>
 <br>
 <button class="btn--small" onclick="updateTable('Sortuj według statusu odebrania')">Sortuj według statusu odebrania</button>
