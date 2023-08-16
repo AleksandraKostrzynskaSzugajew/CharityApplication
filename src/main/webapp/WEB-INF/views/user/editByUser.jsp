@@ -23,7 +23,7 @@
 <br>
 
 <form:form method="post" modelAttribute="user">
-    <div class="form-group">
+    <div class="login-page">
         <form:input type="email" path="email" placeholder="Zmień email" value="${user.email}"/>
     </div>
     <div class="form-group">
