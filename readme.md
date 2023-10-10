@@ -1,5 +1,5 @@
 ! Note: The application is constantly in development
-! TO DO next : Docker - containerize it
+! TO DO next : Dockerize it
 
 Charity Application is about making donations to one of listed organization. What can you do : 
 
@@ -21,7 +21,7 @@ Charity Application is about making donations to one of listed organization. Wha
 Additional information about an app:
 -built using SpringBoot and Hibernate
 -uses spring security
--MySQL database is handled by AWS cloud
+-MySQL database was handled by AWS cloud (cut according to costs)
 -uses email service and unique tokens to activate an account and remind password
 -contains some graphic interface initialy given to me and then developed by myself
 
