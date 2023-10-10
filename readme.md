@@ -23,7 +23,7 @@ Additional information about an app:
 -uses spring security
 -MySQL database was handled by AWS cloud (cut according to costs)
 -uses email service and unique tokens to activate an account and remind password
--contains some graphic interface initialy given to me and then developed by myself
+-contains some graphic interface initialy given to me and then developed by myself using JavaScript
 
 
 
