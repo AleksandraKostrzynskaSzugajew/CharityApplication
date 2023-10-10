@@ -41,16 +41,10 @@ public class CustomUserDetailsService implements UserDetailsService {
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-//         Sprawdź, czy konto użytkownika jest aktywne (enabled == true)
         if (!user.isEnabled()) {
-            // Tu rzuć wyjątek tylko jeśli konto jest zablokowane (enabled == false).
             throw new UsernameNotFoundException("Twoje konto jest zablokowane.");
         }
-//
-//        System.out.println("=======================================================");
-//        System.out.println("Username: " + user.getEmail() + ", Enabled: " + user.isEnabled());
 
-      //   Sprawdź, czy użytkownik ma rolę "admin" i dodaj ją do listy ról
         Role adminRole =  roleService.findByName("ROLE_ADMIN");
         if (user.getRole().equals(adminRole)) {
             authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));

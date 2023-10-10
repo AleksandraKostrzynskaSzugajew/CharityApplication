@@ -20,6 +20,7 @@ public class User {
 
 //    private String name;
 //    private String surname;
+
     private String email;
 
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",

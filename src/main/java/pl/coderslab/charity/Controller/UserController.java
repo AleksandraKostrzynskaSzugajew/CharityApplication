@@ -106,19 +106,15 @@ public class UserController {
         if (sort != null) {
             switch (sort) {
                 case "Sortuj według statusu odebrania":
-                    // Sortowanie według statusu odebrania
                     Collections.sort(myDonations, Comparator.comparing(Donation::isPickedUp));
                     break;
                 case "Sortuj według daty odebrania":
-                    // Sortowanie według daty odebrania
                     Collections.sort(myDonations, Comparator.comparing(Donation::getPickUpDate));
                     break;
                 case "Sortuj według daty utworzenia wpisu":
-                    // Sortowanie według daty utworzenia wpisu
                     Collections.sort(myDonations, Comparator.comparing(Donation::getDonationDeclaredOn));
                     break;
                 default:
-                    // Domyślne sortowanie (np. po ID)
                     Collections.sort(myDonations, Comparator.comparing(Donation::getId));
             }
         }

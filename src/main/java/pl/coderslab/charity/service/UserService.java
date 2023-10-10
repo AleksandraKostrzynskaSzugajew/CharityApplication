@@ -139,7 +139,6 @@ public class UserService {
     }
 
     public String resetPass(String email) {
-        // Inicjalizacja loggera dla klasy, w której znajduje się metoda.
 
 
         Long userId = findByEmail(email);
@@ -149,12 +148,8 @@ public class UserService {
             user.setResetToken(token);
             edit(user);
             sendResetPassEmail(user);
-            // Logowanie informacji o wysłaniu emaila resetującego hasło.
-//            logger.info("Wysłano email resetujący hasło dla użytkownika o adresie email: {}", email);
             return "user/resetMailSent";
         } else {
-            // Logowanie informacji o nieznalezieniu użytkownika o podanym emailu.
-//            logger.warn("Nie znaleziono użytkownika o adresie email: {}", email);
             return "user/noSuchUser";
         }
     }
@@ -185,4 +180,6 @@ public class UserService {
 
         javaMailSender.send(message);
     }
+
+
 }

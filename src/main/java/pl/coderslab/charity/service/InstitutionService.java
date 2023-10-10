@@ -35,21 +35,17 @@ public class InstitutionService {
         Institution existingByKrs = institutionRepository.findByKrs(institution.getKrs());
         Institution existingByName = institutionRepository.findByName(institution.getName());
 
-        // Sprawdź, czy instytucja o danym numerze KRS lub nazwie już istnieje
         if ((existingByKrs == null || existingByKrs.getId().equals(institution.getId())) &&
                 (existingByName == null || existingByName.getId().equals(institution.getId()))) {
 
-            // Sprawdź, czy existingByKrs nie jest null przed wywołaniem equals
             if (existingByKrs != null && existingByKrs.equals(institution)) {
                 return true;
             }
 
-            // Sprawdź, czy existingByName nie jest null przed wywołaniem equals
             if (existingByName != null && existingByName.equals(institution)) {
                 return true;
             }
 
-            // Zaktualizuj instytucję, jeśli zmiany zostały wprowadzone
             institutionRepository.save(institution);
             return true;
         }

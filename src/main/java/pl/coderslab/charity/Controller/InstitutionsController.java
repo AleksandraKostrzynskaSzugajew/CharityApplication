@@ -25,7 +25,7 @@ public class InstitutionsController {
         this.institutionService = institutionService;
     }
 
-   // private static final Logger logger = LoggerFactory.getLogger(InstitutionsController.class);
+    // private static final Logger logger = LoggerFactory.getLogger(InstitutionsController.class);
 
 
     @ModelAttribute("institutions")
@@ -53,7 +53,6 @@ public class InstitutionsController {
             return "institution/save";
         }
     }
-
 
 
     @GetMapping("/edit")

@@ -13,10 +13,19 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+# also available as db in cloud
+
+#  datasource:
+#    url: jdbc:mysql://charity-donation.cjtzmi22a08e.eu-north-1.rds.amazonaws.com/charity_donation?serverTimezone=UTC
+#    username: admin
+#    password: (paste when needed)
+
   datasource:
-    url: jdbc:mysql://charity-donation.cjtzmi22a08e.eu-north-1.rds.amazonaws.com/charity_donation?serverTimezone=UTC
-    username: admin
-    password: 88dDB6!!
+    url: jdbc:mysql://localhost:3306/charity_donation?serverTimezone=UTC
+    username: root
+    password: root
+
   mvc:
     view:
       prefix: /WEB-INF/views/

@@ -18,13 +18,10 @@ public class HomePageController {
 
     private final InstitutionService institutionService;
     private final DonationService donationService;
-
     private final UserService userService;
     private final RoleService roleService;
     private final AdminService adminService;
-
     private final RegistrationService registrationService;
-
     private final EmailServiceImpl emailServiceImpl;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -49,7 +46,6 @@ public class HomePageController {
 
         Long numberOfDonations = donationService.countDonations();
         model.addAttribute("numberOfDonations", numberOfDonations);
-
 
         return "home";
     }
@@ -76,21 +72,16 @@ public class HomePageController {
         return "register";
     }
 
-
-    //TODO wygasniecie tokenu po 24h
+    //TODO token expiry after 24h
 
     @PostMapping("/register")
     public String registered(@ModelAttribute User user) {
-
-        System.out.println("================================================================================");
-        System.out.println(userService.findByEmail(user.getEmail()));
         if (userService.findByEmail(user.getEmail()) == -1) {
             user.setRole(roleService.findByName("ROLE_USER"));
             String token = registrationService.generateUniqueToken();
             user.setUniqueToken(token);
             userService.save(user);
             userService.sendActivationEmail(user);
-
             return "after-registration";
         } else {
             return "user-in-db";
@@ -100,19 +91,12 @@ public class HomePageController {
     @GetMapping("/activate")
     public String activateAccount(@RequestParam String token) {
         User user = userService.findByUniqueToken(token);
-
         if (user != null) {
-            // Aktywuj konto użytkownika
             user.setEnabled(true);
             userService.edit(user);
-            System.out.println("==============================================================================");
-            System.out.println("activated");
-            return "user/activated"; // Zwraca widok z potwierdzeniem aktywacji konta
-
-
+            return "user/activated";
         } else {
-            // Token jest nieprawidłowy lub wygasł
-            return "invalidToken"; // Zwraca widok z komunikatem o nieprawidłowym lub wygasłym tokenie
+            return "invalidToken";
         }
     }
 
@@ -129,7 +113,6 @@ public class HomePageController {
 
     @GetMapping("/resetpassfm")
     public String showResetForm(@RequestParam String token) {
-
         User user = userService.findByResetToken(token);
         if (user != null) {
             user.setResetToken("");
@@ -167,12 +150,8 @@ public class HomePageController {
     public String resetPassByUser(@RequestParam String password1,
                                   @RequestParam String password2,
                                   @RequestParam Long userId) {
-
         User user = userService.findById(userId);
-
         String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
-
-
         if (password1.equals(password2) && password1.matches(passwordRegex)) {
             user.setPassword(bCryptPasswordEncoder.encode(password1));
             userService.edit(user);
@@ -183,10 +162,9 @@ public class HomePageController {
     }
 
     @PostMapping("/contact")
-    public void registerContact(){
+    public void registerContact() {
 
     }
-
 
 
 }

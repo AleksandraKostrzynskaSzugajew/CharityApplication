@@ -41,10 +41,8 @@ public class DonationController {
         model.addAttribute("categories", categories);
         model.addAttribute("institutions", institutions);
         model.addAttribute("donation", new Donation());
-
         Long userId = userService.getCurrentUser();
         model.addAttribute("userId", userId);
-
         return "form";
     }
 
